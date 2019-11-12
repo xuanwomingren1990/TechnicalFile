@@ -1,15 +1,18 @@
 <template>
   <div id="app">
-    <ol-map></ol-map>
+    <!--<ol-map></ol-map>-->
+    <control-index></control-index>
   </div>
 </template>
 
 <script>
   import olMap from './components/olMap.vue'
+  import controlIndex from './components/controls/controlIndex.vue'
   export default {
       name: 'app',
       components: {
-          olMap
+          // olMap,
+          controlIndex
       }
   }
 </script>

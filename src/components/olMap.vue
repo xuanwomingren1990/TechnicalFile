@@ -13,22 +13,30 @@
         name: "olMap",
         data () {
             return {
+                // 定义map,便于重复调用
                 map: null
             }
         },
+        // 在mounted钩子中厂创建地图实例
         mounted() {
             // var mapcontainer = this.$refs.rootmap;
+
+            //创建地图
             this.map = new Map({
+                /**1.让id为map的div作为地图的容器*/
                 target: "map",
+                /**2. 设置地图图层*/
                 layers: [
+                    //创建一个使用Open Street Map地图源的瓦片图层
                     new TileLayer({
                         source: new OSM()
                     })
                 ],
+                /**3. 设置显示地图的视图*/
                 view: new View({
-                    projection: "EPSG:4326",    //使用这个坐标系
-                    center: [114.064839,22.548857],  //深圳
-                    zoom: 12
+                    projection: "EPSG:4326",    //坐标系
+                    center: [114.064839,22.548857],  //定义地图显示中心(深圳)
+                    zoom: 12// 定义地图显示层级为12
                 })
             });
         }
