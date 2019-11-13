@@ -9,10 +9,9 @@
     import { Map, View } from "ol"
     import OSM from "ol/source/OSM.js"
     import TileLayer from 'ol/layer/Tile.js'
-    // import {defaults as defaultControls, FullScreen} from 'ol/control.js'
-    import {defaults as defaultControls} from 'ol/control.js'
+    import {defaults as defaultControls, FullScreen} from 'ol/control.js'
     export default {
-        name: "controlIndex",
+        name: "ControlIndex",
         data () {
             return {
                 map: null

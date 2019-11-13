@@ -10,14 +10,14 @@
     import TileLayer from "ol/layer/Tile";
     import OSM from "ol/source/OSM";
     export default {
-        name: "olMap",
+        name: "Map",
         data () {
             return {
                 // 定义map,便于重复调用
                 map: null
             }
         },
-        // 在mounted钩子中厂创建地图实例
+        // 在mounted钩子中创建地图实例
         mounted() {
             // var mapcontainer = this.$refs.rootmap;
 
