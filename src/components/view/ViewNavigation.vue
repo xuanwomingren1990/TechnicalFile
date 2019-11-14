@@ -29,13 +29,14 @@
         methods: {
             moveLeft(){
                 // map就是一个摄影系统；
-                // 图层就是要拍摄的景物，它是由数据source生成的；
-                // 视图就是相机的镜头，控制镜头就能拍摄到不同的照片；
+                // 图层就是要拍摄的景物，只不过它是由数据source渲染成的；
+                // 视图就是相机的镜头，控制镜头就能拍摄到不同的照片，因为相框是固定大小的；
+                // target就是相框
                 var mapCenter = this.view.getCenter()//镜头的中心位置
+                console.log(mapCenter)
                 mapCenter[0] += 10000;
                 this.view.setCenter(mapCenter)//镜头对准新位置
-                this.map.render();//重新渲染得到新的地图
-
+                this.map.render();//重新渲染得到新的照片
             },
             moveRight(){
                 var center = this.view.getCenter()
@@ -58,7 +59,7 @@
             backHome(){
                 var ShenZhen = transform([114.064839, 22.548857], 'EPSG:4326', 'EPSG:3857')//深圳所在位置
                 this.view.setCenter(ShenZhen)//镜头重新对准深圳
-                this.map.render()//重新渲染得到新的地图
+                this.map.render()//重新渲染得到新的照片
             },
             zoomIn(){
                 // 放大和缩小并没有改变镜头的位置，因此看到的景物是一样的，不用重新渲染
