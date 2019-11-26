@@ -17,7 +17,7 @@
   export default {
       name: 'app',
       components: {
-          olMap,//地图基本
+          olMap,//地图基础
           ControlIndex,//控件基础
           MapLinkage,//地图联动
           MapExchange,//动态交换地图

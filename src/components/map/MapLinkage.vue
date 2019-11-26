@@ -20,7 +20,7 @@
             }
         },
         mounted () {
-            // 地图1 和 地图2 共享一个视图
+            /**地图1 和 地图2 共享一个视图*/
             this.view = new View({
                 projection: "EPSG:4326",
                 center: [114.064839,22.548857],

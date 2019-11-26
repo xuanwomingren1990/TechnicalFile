@@ -20,7 +20,6 @@
         // 在mounted钩子中创建地图实例
         mounted() {
             // var mapcontainer = this.$refs.rootmap;
-
             //创建地图
             this.map = new Map({
                 /**1.让id为map的div作为地图的容器*/

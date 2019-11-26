@@ -54,7 +54,7 @@
             exchange () {
                 var target1 = this.map1.getTarget()
                 /**
-                 * 通过改变地图的容器，来实现地图呈现位置的交换
+                 * 通过改变地图的容器，来实现地图呈现位置的交换 setTarget()
                  */
                 if (target1 === 'map1') {
                     this.map1.setTarget('map2')
@@ -93,3 +93,8 @@
         }
     }
 </style>
+
+<!--
+            改变地图显示位置
+通过改变地图的容器，来实现地图呈现位置的交换
+-->
