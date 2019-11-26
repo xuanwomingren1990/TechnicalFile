@@ -6,7 +6,8 @@
     <!--<map-exchange></map-exchange>-->
     <!--<view-navigation></view-navigation>-->
       <!--<view-extent></view-extent>-->
-      <view-min-max-zoom></view-min-max-zoom>
+      <!--<view-min-max-zoom></view-min-max-zoom>-->
+    <view-fit-extent></view-fit-extent>
   </div>
 </template>
 
@@ -18,6 +19,7 @@
   import ViewNavigation from './components/view/ViewNavigation.vue'
   import ViewExtent from './components/view/ViewExtent'
   import ViewMinMaxZoom from './components/view/ViewMinMaxZoom.vue'
+  import ViewFitExtent from './components/view/ViewFitExtent.vue'
   export default {
       name: 'app',
       components: {
@@ -27,7 +29,8 @@
           MapExchange,//动态交换地图
           ViewNavigation,//导航
           ViewExtent,//限制地图缩放范围
-          ViewMinMaxZoom
+          ViewMinMaxZoom,//最大最小显示级别
+          ViewFitExtent,//自适配区域
       }
   }
 </script>
