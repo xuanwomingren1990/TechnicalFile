@@ -3,9 +3,9 @@
 </template>
 
 <script>
-    // 引入樣式文件
+    /**1.引入樣式文件*/
     import "ol/ol.css";
-    // 引入需要的模塊
+    // 按需引入需要的模塊
     import { Map, View } from "ol";
     import TileLayer from "ol/layer/Tile";
     import OSM from "ol/source/OSM";
@@ -13,25 +13,27 @@
         name: "Map",
         data () {
             return {
-                // 定义map,便于重复调用
+                /**3定义map,便于重复调用*/
                 map: null
             }
         },
-        // 在mounted钩子中创建地图实例
+        /**2.在mounted钩子中创建地图实例*/
         mounted() {
             // var mapcontainer = this.$refs.rootmap;
             //创建地图
             this.map = new Map({
-                /**1.让id为map的div作为地图的容器*/
+                //1.让id为map的div作为地图的容器
                 target: "map",
-                /**2. 设置地图图层*/
+
+                //2. 设置地图图层
                 layers: [
                     //创建一个使用Open Street Map地图源的 瓦片图层
                     new TileLayer({
                         source: new OSM()
                     })
                 ],
-                /**3. 设置显示地图的视图*/
+
+                //3. 设置显示地图的视图
                 view: new View({
                     // ol默认使用的是EPSG:3857坐标---(伪墨卡托投影，投影坐标系，例如：[12697639.794896733, 2577550.933585181])；
                     // EPSG:4326--- wgs84地理坐标系[经度、维度]
@@ -48,6 +50,7 @@
 
 <style scoped>
     #map{height:100%;}
+
     /*隐藏ol的一些自带元素*/
     /*.ol-attribution,.ol-zoom { display: none;}*/
 </style>

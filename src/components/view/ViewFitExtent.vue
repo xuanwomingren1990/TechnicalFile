@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div id="map"></div>
-        <div class="button" v-on:click="fitToNanchang()">显示南昌</div>
+        <div class="button" v-on:click="fitToNanchang()">显示成都</div>
     </div>
 </template>
 
@@ -21,6 +21,7 @@
         },
         methods: {
             fitToNanchang(){
+                /**定位到成都，并且最大化完全显示这块区域*/
                 this.map.getView().fit([104, 30.6, 104.12, 30.74], this.map.getSize());
             }
         },

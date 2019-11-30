@@ -5,8 +5,8 @@
     <!--<map-linkage>地图联动</map-linkage>-->
     <!--<map-exchange></map-exchange>-->
     <!--<view-navigation></view-navigation>-->
-      <!--<view-extent></view-extent>-->
-      <!--<view-min-max-zoom></view-min-max-zoom>-->
+    <!--<view-extent></view-extent>-->
+    <!--<view-min-max-zoom></view-min-max-zoom>-->
     <view-fit-extent></view-fit-extent>
   </div>
 </template>
