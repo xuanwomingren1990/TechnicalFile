@@ -1,36 +1,64 @@
 <template>
   <div id="app">
-    <!--<ol-map>地图基本</ol-map>-->
-    <!--<control-index>控件基础</control-index>-->
-    <!--<map-linkage>地图联动</map-linkage>-->
-    <!--<map-exchange></map-exchange>-->
-    <!--<view-navigation></view-navigation>-->
-    <!--<view-extent></view-extent>-->
-    <!--<view-min-max-zoom></view-min-max-zoom>-->
-    <view-fit-extent></view-fit-extent>
+    <div class="router-links">
+      <el-collapse>
+        <!--Map-->
+        <el-collapse-item title="Map" name="1">
+          <router-link class="link-item" to="/olMap">地图基础</router-link>
+          <router-link class="link-item" to="/MapExchange">动态交换地图</router-link>
+          <router-link class="link-item" to="/MapLinkage">地图联动</router-link>
+        </el-collapse-item>
+        <!--View-->
+        <el-collapse-item title="View" name="2">
+          <router-link class="link-item" to="/ViewNavigation">地图导航</router-link>
+          <router-link class="link-item" to="/ViewExtent">限制地图范围</router-link>
+          <router-link class="link-item" to="/ViewMinMaxZoom">限制地图缩放级别</router-link>
+          <router-link class="link-item" to="/ViewFitExtent">自适配区域</router-link>
+        </el-collapse-item>
+        <!--Source和Layer-->
+        <el-collapse-item title="Source和Layer" name="3">
+          <el-collapse>
+            <el-collapse-item title="TileSource" name="31">
+            </el-collapse-item>
+          </el-collapse>
+        </el-collapse-item>
+        <!--Control-->
+        <el-collapse-item title="Control" name="9">
+          <router-link class="link-item" to="/ControlIndex">控件基础</router-link>
+        </el-collapse-item>
+      </el-collapse>
+    </div>
+    <div class="map-components">
+      <el-button
+              type="primary" size="mini" v-on:click="showNotes" style="
+              z-index: 99;
+              position: absolute;
+              top: 65px;
+              margin-left: 10px;">
+        查看注记
+      </el-button>
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
 <script>
-  import olMap from './components/Map.vue'
-  import ControlIndex from './components/controls/ControlIndex.vue'
-  import MapLinkage from './components/map/MapLinkage.vue'
-  import MapExchange from './components/map/MapExchange.vue'
-  import ViewNavigation from './components/view/ViewNavigation.vue'
-  import ViewExtent from './components/view/ViewExtent'
-  import ViewMinMaxZoom from './components/view/ViewMinMaxZoom.vue'
-  import ViewFitExtent from './components/view/ViewFitExtent.vue'
   export default {
       name: 'app',
+      methods: {
+          // 切换笔记框的显示与隐藏
+          showNotes(){
+              var notes = document.getElementsByClassName('notes')
+              for (let i = 0; i < notes.length; i++) {
+                  if (notes[i].className.indexOf('hidden') >= 0) {
+                      notes[i].classList.remove('hidden')
+                  }else {
+                      notes[i].classList.add('hidden')
+                  }
+              }
+          }
+      },
       components: {
-          olMap,//地图基础
-          ControlIndex,//控件基础
-          MapLinkage,//地图联动
-          MapExchange,//动态交换地图
-          ViewNavigation,//导航
-          ViewExtent,//限制地图缩放范围
-          ViewMinMaxZoom,//最大最小显示级别
-          ViewFitExtent,//自适配区域
       }
   }
 </script>
@@ -44,5 +72,41 @@
   }
   #app {
     height: 100%;
+    width: 100%;
+    display: flex;
+    .router-links{
+      width: 12%;
+      height: 100%;
+      background-color: #c7dbff;
+      .el-collapse{
+        .el-collapse-item{
+          .el-collapse-item__wrap{
+            .el-collapse-item__content{
+              margin-left: 15px;
+            }
+          }
+        }
+      }
+      .link-item{
+        display: block;
+      }
+    }
+    .map-components{
+      width: 85%;
+      height: 100%;
+    }
+  }
+
+  /*笔记框样式*/
+  .notes{
+    position: absolute;
+    right: 10px;
+    top:10px;
+    z-index: 999999999;
+    background-color: white;
+    width: 50%;
+  }
+  .notes.hidden{
+    display: none;
   }
 </style>

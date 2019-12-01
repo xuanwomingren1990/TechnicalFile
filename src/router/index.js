@@ -1,23 +1,63 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+
+// 各个地图组件
+import olMap from '../components/Map.vue'
+import ControlIndex from '../components/controls/ControlIndex.vue'
+import MapLinkage from '../components/map/MapLinkage.vue'
+import MapExchange from '../components/map/MapExchange.vue'
+import ViewNavigation from '../components/view/ViewNavigation.vue'
+import ViewExtent from '../components/view/ViewExtent'
+import ViewMinMaxZoom from '../components/view/ViewMinMaxZoom.vue'
+import ViewFitExtent from '../components/view/ViewFitExtent.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
-  {
-    path: '/',
-    name: 'home',
-    component: Home
-  },
-  {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
+    {
+        path: '/',
+        redirect: '/olMap'
+    },
+    {
+      path: '/olMap',
+      name: 'olMap',
+      component: olMap
+    },
+    {
+        path: '/ControlIndex',
+        name: 'ControlIndex',
+        component: ControlIndex
+    },
+    {
+        path: '/MapLinkage',
+        name: 'MapLinkage',
+        component: MapLinkage
+    },
+    {
+        path: '/MapExchange',
+        name: 'MapExchange',
+        component: MapExchange
+    },
+    {
+        path: '/ViewNavigation',
+        name: 'ViewNavigation',
+        component: ViewNavigation
+    },
+    {
+        path: '/ViewExtent',
+        name: 'ViewExtent',
+        component: ViewExtent
+    },
+    {
+        path: '/ViewMinMaxZoom',
+        name: 'ViewMinMaxZoom',
+        component: ViewMinMaxZoom
+    },
+    {
+        path: '/ViewFitExtent',
+        name: 'ViewFitExtent',
+        component: ViewFitExtent
+    }
 ]
 
 const router = new VueRouter({
