@@ -19,6 +19,7 @@
         <el-collapse-item title="Source和Layer" name="3">
           <el-collapse>
             <el-collapse-item title="TileSource" name="31">
+              <router-link class="link-item" to="/TileSourceOnline">最简单的加载在线地图</router-link>
             </el-collapse-item>
           </el-collapse>
         </el-collapse-item>

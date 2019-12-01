@@ -10,6 +10,7 @@ import ViewNavigation from '../components/view/ViewNavigation.vue'
 import ViewExtent from '../components/view/ViewExtent'
 import ViewMinMaxZoom from '../components/view/ViewMinMaxZoom.vue'
 import ViewFitExtent from '../components/view/ViewFitExtent.vue'
+import TileSourceOnline from '../components/Source_Layer/TileSource/TileSourceOnline.vue'
 
 Vue.use(VueRouter)
 
@@ -57,6 +58,11 @@ const routes = [
         path: '/ViewFitExtent',
         name: 'ViewFitExtent',
         component: ViewFitExtent
+    },
+    {
+        path: '/TileSourceOnline',
+        name: 'TileSourceOnline',
+        component: TileSourceOnline
     }
 ]
 
