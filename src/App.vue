@@ -81,6 +81,9 @@
       background-color: #c7dbff;
       .el-collapse{
         .el-collapse-item{
+            .el-collapse-item__header{
+                padding-left: 23px;
+            }
           .el-collapse-item__wrap{
             .el-collapse-item__content{
               margin-left: 15px;
