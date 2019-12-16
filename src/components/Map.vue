@@ -103,6 +103,11 @@
                     zoom: 12//显示级别
                 })
             });
+
+            // this.map.on('moveend',e => {
+            //     var zoom = this.map.getView().getZoom();  //获取当前地图的缩放级别
+            //     console.log(zoom);
+            // })
         }
     }
 </script>

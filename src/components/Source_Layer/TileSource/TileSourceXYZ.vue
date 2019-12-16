@@ -3,33 +3,18 @@
         <div class="radios">
             <el-radio-group v-model="radio" v-on:change="change">
                 <el-radio  label="openStreetMapLayer">openStreetMap地图</el-radio>
-                <el-radio  label="bingMapLayer">Bing地图</el-radio>
-                <el-radio  label="stamenLayer">Stamen地图</el-radio>
+                <el-radio  label="GaodeMapLayer">高德地图</el-radio>
+                <el-radio  label="YahooMapLayer">Yahoo地图</el-radio>
             </el-radio-group>
         </div>
-<!-------------------笔记------------------>
-<div class="notes hidden">
+        <!-------------------笔记------------------>
+        <div class="notes hidden">
 <pre>
-    // 先移除当前的图层
-    this.map.getLayers().forEach( (layer) => {
-        this.map.removeLayer(layer)
-    })
-    // 再添加选中的图层
-    switch (newValue) {
-        case 'openStreetMapLayer':
-            this.map.addLayer(this.openStreetMapLayer)
-            break
-        case 'bingMapLayer':
-            this.map.addLayer(this.bingMapLayer)
-            break
-        case 'stamenLayer':
-            this.map.addLayer(this.stamenLayer)
-            break
-    }
+    1.ol.source.XYZ是一个通用的Source,可以适应广大的在线瓦片地图数据源
     <!--&lt;div&gt;&lt;/div&gt;-->
 </pre>
-</div>
-<!-------------------笔记---------------->
+        </div>
+        <!-------------------笔记---------------->
     </div>
 </template>
 
@@ -37,17 +22,15 @@
     import "ol/ol.css";
     import { Map, View } from "ol";
     import TileLayer from "ol/layer/Tile";
-    import BingMaps from 'ol/source/BingMaps';
-    import Stamen from 'ol/source/Stamen';
-    import OSM from "ol/source/OSM";
+    import XYZ from 'ol/source/XYZ';
     export default {
-        name: "TileSourceOnline",
+        name: "TileSourceXYZ",
         data () {
             return {
                 map: null,
                 openStreetMapLayer: null,
-                bingMapLayer: null,
-                stamenLayer: null,
+                GaodeMapLayer: null,
+                YahooMapLayer: null,
 
                 radio: 'openStreetMapLayer'
             }
@@ -60,21 +43,24 @@
         mounted() {
             // Open Street Map 地图层
             this.openStreetMapLayer = new TileLayer({
-                source: new OSM()
-            });
-
-            // Bing地图层
-            this.bingMapLayer = new TileLayer({
-                source: new BingMaps({
-                    key: 'AkjzA7OhS4MIBjutL21bkAop7dc41HSE0CNTR5c6HJy8JKc7U9U9RveWJrylD3XJ',
-                    imagerySet: 'Road'
+                source: new XYZ({
+                    url:'http://{a-c}.tile.openstreetmap.org/{z}/{x}/{y}.png'
                 })
             });
 
-            // Stamen地图层
-            this.stamenLayer = new TileLayer({
-                source: new Stamen({
-                    layer: 'watercolor'
+            // 高德地图层
+            this.GaodeMapLayer = new TileLayer({
+                source: new XYZ({
+                    url: 'http://webst0{1-4}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=7&x={x}&y={y}&z={z}'
+                })
+            });
+
+            // Yahoo地图层
+            this.YahooMapLayer = new TileLayer({
+                source: new XYZ({
+                    // 默认情况下，tileSize为256，这也是现在绝大多数瓦片采用的大小。但Yahoo地图使用的是512，
+                    tileSize: 512,
+                    url:'https://{0-3}.base.maps.api.here.com/maptile/2.1/maptile/newest/normal.day/{z}/{x}/{y}/512/png8?lg=ENG&ppi=250&token=TrLJuXVK62IQk0vuXFzaig%3D%3D&requestid=yahoo.prod&app_id=eAdkWGYRoc4RfxVo0Z4B'
                 })
             });
 
@@ -102,11 +88,11 @@
                     case 'openStreetMapLayer':
                         this.map.addLayer(this.openStreetMapLayer)
                         break
-                    case 'bingMapLayer':
-                        this.map.addLayer(this.bingMapLayer)
+                    case 'GaodeMapLayer':
+                        this.map.addLayer(this.GaodeMapLayer)
                         break
-                    case 'stamenLayer':
-                        this.map.addLayer(this.stamenLayer)
+                    case 'YahooMapLayer':
+                        this.map.addLayer(this.YahooMapLayer)
                         break
                 }
             }

@@ -20,6 +20,8 @@
           <el-collapse>
             <el-collapse-item title="TileSource" name="31">
               <router-link class="link-item" to="/TileSourceOnline">最简单的加载在线地图</router-link>
+              <router-link class="link-item" to="/TileSourceXYZ">XYZ加载在线瓦片地图</router-link>
+              <router-link class="link-item" to="/TileSourceXYZ/Baidu">XYZ加载百度地图</router-link>
             </el-collapse-item>
           </el-collapse>
         </el-collapse-item>
