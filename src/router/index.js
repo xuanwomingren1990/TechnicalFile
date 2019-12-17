@@ -12,7 +12,9 @@ import ViewMinMaxZoom from '../components/view/ViewMinMaxZoom.vue'
 import ViewFitExtent from '../components/view/ViewFitExtent.vue'
 import TileSourceOnline from '../components/Source_Layer/TileSource/TileSourceOnline.vue'
 import TileSourceXYZ from '../components/Source_Layer/TileSource/TileSourceXYZ.vue'
-import TileSourceXYZ_Baidu from '../components/Source_Layer/TileSource/TileSourceXYZ_Baidu.vue'
+import TileSourceXYZ_Baidu_Formal from '../components/Source_Layer/TileSource/TileSourceXYZ_Baidu_Formal.vue'
+import TileSourceXYZ_Baidu_Test from '../components/Source_Layer/TileSource/TileSourceXYZ_Baidu_Test.vue'
+import TileSourceTileImage from '../components/Source_Layer/TileSource/TileSourceTileImage.vue'
 
 Vue.use(VueRouter)
 
@@ -72,9 +74,19 @@ const routes = [
         component: TileSourceXYZ
     },
     {
-        path: '/TileSourceXYZ/Baidu',
-        name: 'TileSourceXYZ_Baidu',
-        component: TileSourceXYZ_Baidu
+        path: '/TileSourceXYZ/Baidu/Test',
+        name: 'TileSourceXYZ_Baidu_Test',
+        component: TileSourceXYZ_Baidu_Test
+    },
+    {
+        path: '/TileSourceXYZ/Baidu/Formal',
+        name: 'TileSourceXYZ_Baidu_Formal',
+        component: TileSourceXYZ_Baidu_Formal
+    },
+    {
+        path: '/TileSourceTileImage',
+        name: 'TileSourceTileImage',
+        component: TileSourceTileImage
     }
 ]
 

@@ -110,6 +110,4 @@
             left: 63px;
         }
     }
-    /*隐藏ol的一些自带元素*/
-    /*.ol-attribution,.ol-zoom { display: none;}*/
 </style>
