@@ -44,7 +44,15 @@
             // Open Street Map 地图层
             this.openStreetMapLayer = new TileLayer({
                 source: new XYZ({
-                    url:'http://{a-c}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+                    url:'http://{a-c}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+                    tileUrlFunction: function (tileCoord) {
+                        debugger
+
+                        /*
+                          zoom = 0
+
+                         */
+                    }
                 })
             });
 
@@ -73,7 +81,7 @@
                 view: new View({
                     projection: "EPSG:4326",
                     center: [114.064839,22.548857],
-                    zoom: 12
+                    zoom: 1
                 })
             });
         },

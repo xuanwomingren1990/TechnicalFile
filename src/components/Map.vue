@@ -3,6 +3,7 @@
 <!-------------------笔记------------------>
 <div class="notes hidden">
 <pre>
+    OpenLayers学习文档：http://weilin.me/ol3-primer/
                                 在vue中使用openlayers
     &lt;script&gt;
     /**1.引入樣式文件*/

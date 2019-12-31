@@ -8,6 +8,7 @@
           <router-link class="link-item" to="/MapExchange">动态交换地图</router-link>
           <router-link class="link-item" to="/MapLinkage">地图联动</router-link>
         </el-collapse-item>
+
         <!--View-->
         <el-collapse-item title="View" name="2">
           <router-link class="link-item" to="/ViewNavigation">地图导航</router-link>
@@ -15,6 +16,7 @@
           <router-link class="link-item" to="/ViewMinMaxZoom">限制地图缩放级别</router-link>
           <router-link class="link-item" to="/ViewFitExtent">自适配区域</router-link>
         </el-collapse-item>
+
         <!--Source和Layer-->
         <el-collapse-item title="Source和Layer" name="3">
           <el-collapse>
@@ -27,10 +29,17 @@
             </el-collapse-item>
           </el-collapse>
         </el-collapse-item>
+
         <!--Control-->
-        <el-collapse-item title="Control" name="9">
+        <el-collapse-item title="Control" name="4">
           <router-link class="link-item" to="/ControlIndex">控件基础</router-link>
         </el-collapse-item>
+
+        <!--VUE部分-->
+          <el-collapse-item title="vue案例" name="5">
+              <router-link class="link-item" to="/vue/ArchiveComponent">动态组件</router-link>
+              <router-link class="link-item" to="/vue/SlotIndex">插槽</router-link>
+          </el-collapse-item>
       </el-collapse>
     </div>
     <div class="map-components">
@@ -91,6 +100,7 @@
           .el-collapse-item__wrap{
             .el-collapse-item__content{
               margin-left: 15px;
+                padding-left: 15px;
             }
           }
         }

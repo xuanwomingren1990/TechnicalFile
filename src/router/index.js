@@ -16,6 +16,10 @@ import TileSourceXYZ_Baidu_Formal from '../components/Source_Layer/TileSource/Ti
 import TileSourceXYZ_Baidu_Test from '../components/Source_Layer/TileSource/TileSourceXYZ_Baidu_Test.vue'
 import TileSourceTileImage from '../components/Source_Layer/TileSource/TileSourceTileImage.vue'
 
+// vue 案例
+import ArchiveComponent from '../components/Vue/ArchiveComponent/index.vue'
+import SlotIndex from '../components/Vue/slot/Index'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -87,6 +91,19 @@ const routes = [
         path: '/TileSourceTileImage',
         name: 'TileSourceTileImage',
         component: TileSourceTileImage
+    },
+
+
+    // 测试
+    {
+        path: '/vue/ArchiveComponent',
+        name: 'ArchiveComponent',
+        component: ArchiveComponent
+    },
+    {
+        path: '/vue/SlotIndex',
+        name: 'SlotIndex',
+        component: SlotIndex
     }
 ]
 
