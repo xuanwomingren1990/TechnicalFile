@@ -22,7 +22,7 @@
             var startTime = new Date().getTime();
 
             //两秒后执行
-            while (new Date().getTime() < startTime + 2000){
+            while (new Date().getTime() < startTime + 1500){
                 self.hello='我是延迟后的内容';
             }
 

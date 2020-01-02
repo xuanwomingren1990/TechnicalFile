@@ -18,7 +18,8 @@ import TileSourceTileImage from '../components/Source_Layer/TileSource/TileSourc
 
 // vue 案例
 import ArchiveComponent from '../components/Vue/ArchiveComponent/index.vue'
-import SlotIndex from '../components/Vue/slot/Index'
+import SlotIndex from '../components/Vue/slot/Index.vue'
+import WatchIndex from '../components/Vue/watch/index.vue'
 
 Vue.use(VueRouter)
 
@@ -94,7 +95,7 @@ const routes = [
     },
 
 
-    // 测试
+    // VUE
     {
         path: '/vue/ArchiveComponent',
         name: 'ArchiveComponent',
@@ -104,6 +105,11 @@ const routes = [
         path: '/vue/SlotIndex',
         name: 'SlotIndex',
         component: SlotIndex
+    },
+    {
+        path: '/vue/WatchIndex',
+        name: 'WatchIndex',
+        component: WatchIndex
     }
 ]
 

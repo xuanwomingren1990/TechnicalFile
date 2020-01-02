@@ -11,7 +11,7 @@
         <!--2.包含默认内容的插槽组件-->
         <!--当不提供任何插槽内容时，将显示插槽的默认内容-->
         <slot-default-content></slot-default-content>
-        <!--提供插槽内容，则会覆盖的默认内容-->
+        <!--提供插槽内容，则会覆盖默认内容-->
         <slot-default-content>覆盖默认内容</slot-default-content>
 
         <!--3.包含多个插槽的组件-->
@@ -30,7 +30,7 @@
             </template>
         </slot-multi>
 
-        <!--4.向插槽传递内容时，在内容中访问插槽组件中的数据-->
+        <!--4.向插槽传递内容时，访问插槽组件中的数据-->
         <slot-with-property>
             <!--slotProps对象包含所有绑定在default插槽的特性-->
             <template v-slot:default="slotProps">

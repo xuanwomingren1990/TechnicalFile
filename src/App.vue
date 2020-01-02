@@ -39,6 +39,7 @@
           <el-collapse-item title="vue案例" name="5">
               <router-link class="link-item" to="/vue/ArchiveComponent">动态组件</router-link>
               <router-link class="link-item" to="/vue/SlotIndex">插槽</router-link>
+              <router-link class="link-item" to="/vue/WatchIndex">监听器</router-link>
           </el-collapse-item>
       </el-collapse>
     </div>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../../../../node_modules/vue/dist/vue.js"></script>
+    <script src="../../../../node_modules/element-ui/lib/index.js"></script>
+    <link rel="stylesheet" href="../../../../node_modules/element-ui/lib/theme-chalk/index.css">
+</head>
+<body>
+<div id="example">
+    <div style="margin-bottom: 15px">
+        <div>原始的 message: "{{ message }}"</div>
+        <div>经过计算属性反转的 message: "{{ reversedMessage }}"</div>
+    </div>
+
+    <!--双向绑定计算属性，原声html元素-->
+    <div style="margin-bottom: 15px">
+        <span>fullName: <input type="text" v-model:value="fullName"></span>
+        <div>
+            <span>firstName: <input type="text" v-model:value="firstName"></span>
+            <span>lastName: <input type="text" v-model:value="lastName"></span>
+        </div>
+    </div>
+
+    <!--双向绑定计算属性，基于elementUI-->
+    <div style="margin-bottom: 15px">
+        <div>fullName: <el-input v-model="fullName" placeholder="请输入内容"></el-input></div>
+        <div>
+            <span>firstName: <el-input v-model="firstName" placeholder="请输入内容"></el-input></span>
+            <span>lastName: <el-input v-model="lastName" placeholder="请输入内容"></el-input></span>
+        </div>
+    </div>
+</div>
+<script>
+    var vm = new Vue({
+        el: '#example',
+
+        data: {
+            message: 'Hello',
+
+            firstName: 'Foo',
+            lastName: 'Bar'
+        },
+
+        computed: {
+            /**计算属性默认只有 getter*/
+            reversedMessage: function () {
+                // `this` 指向 vm 实例
+                // 计算属性是基于它们的响应式依赖进行缓存的,只在相关响应式依赖发生改变时它们才会重新求值。否则，计算属性会立即返回之前的计算结果，而不必再次执行函数。
+                return this.message.split('').reverse().join('')
+            },
+
+            /**
+             * 同时包含getter 和 setter
+             * 此时计算属性可以进行双向绑定
+             */
+            fullName: {
+                // getter
+                get: function () {
+                    return this.firstName + ' ' + this.lastName
+                },
+                // setter
+                set: function (newValue) {
+                    var names = newValue.split(' ')
+                    this.firstName = names[0]
+                    this.lastName = names[names.length - 1]
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>
