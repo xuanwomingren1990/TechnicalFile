@@ -18,8 +18,10 @@ import TileSourceTileImage from '../components/Source_Layer/TileSource/TileSourc
 
 // vue 案例
 import ArchiveComponent from '../components/Vue/ArchiveComponent/index.vue'
-import SlotIndex from '../components/Vue/slot/Index.vue'
-import WatchIndex from '../components/Vue/watch/index.vue'
+import SlotIndex from '../components/Vue/Slot/Index.vue'
+import WatchIndex from '../components/Vue/WatchProperty/index.vue'
+// vue自定义组件
+import CustomComponentIndex from '../components/Vue/CustomComponents/Index.vue'
 
 Vue.use(VueRouter)
 
@@ -110,6 +112,11 @@ const routes = [
         path: '/vue/WatchIndex',
         name: 'WatchIndex',
         component: WatchIndex
+    },
+    {
+        path: '/vue/Components',
+        name: 'CustomComponentIndex',
+        component: CustomComponentIndex
     }
 ]
 

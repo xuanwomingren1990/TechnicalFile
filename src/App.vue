@@ -40,6 +40,7 @@
               <router-link class="link-item" to="/vue/ArchiveComponent">动态组件</router-link>
               <router-link class="link-item" to="/vue/SlotIndex">插槽</router-link>
               <router-link class="link-item" to="/vue/WatchIndex">监听器</router-link>
+              <router-link class="link-item" to="/vue/Components">自定义组件</router-link>
           </el-collapse-item>
       </el-collapse>
     </div>
@@ -48,8 +49,8 @@
               type="primary" size="mini" v-on:click="showNotes" style="
               z-index: 99;
               position: absolute;
-              top: 65px;
-              margin-left: 10px;">
+              left: 185px;
+              bottom: 5px;">
         查看注记
       </el-button>
       <router-view></router-view>
