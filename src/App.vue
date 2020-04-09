@@ -41,6 +41,7 @@
               <router-link class="link-item" to="/vue/SlotIndex">插槽</router-link>
               <router-link class="link-item" to="/vue/WatchIndex">监听器</router-link>
               <router-link class="link-item" to="/vue/Components">自定义组件</router-link>
+              <router-link class="link-item" to="/vue/Plugins">插件</router-link>
           </el-collapse-item>
       </el-collapse>
     </div>

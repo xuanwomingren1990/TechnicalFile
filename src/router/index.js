@@ -22,6 +22,7 @@ import SlotIndex from '../components/Vue/Slot/Index.vue'
 import WatchIndex from '../components/Vue/WatchProperty/index.vue'
 // vue自定义组件
 import CustomComponentIndex from '../components/Vue/CustomComponents/Index.vue'
+import CustomPluginsIndex from '../components/Vue/Plugins/index.vue'
 
 Vue.use(VueRouter)
 
@@ -117,6 +118,11 @@ const routes = [
         path: '/vue/Components',
         name: 'CustomComponentIndex',
         component: CustomComponentIndex
+    },
+    {
+        path: '/vue/Plugins',
+        name: 'CustomPluginsIndex',
+        component: CustomPluginsIndex
     }
 ]
 

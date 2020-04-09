@@ -1,6 +1,6 @@
 <template>
     <div class="custom-components-container">
-        <div class="buttons">
+        <div class="buttons" style="display: flex;justify-content: center">
             <el-row>
                 <el-button type="primary" size="small" v-on:click="switchTo('dialogPanelIndex')">DialogPanel</el-button>
             </el-row>

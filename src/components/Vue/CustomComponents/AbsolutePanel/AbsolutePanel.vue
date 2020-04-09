@@ -39,6 +39,13 @@
     }
 </script>
 
-<style scoped>
-
+<style scoped lang="scss">
+    .absolutePanel-wrapper {
+        background-color: aqua;
+        position: absolute;
+        margin: 0;
+        padding: 0;
+        /*默认层级*/
+        z-index: 9;
+    }
 </style>
