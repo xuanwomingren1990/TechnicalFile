@@ -35,7 +35,9 @@
           <router-link class="link-item" to="/ControlIndex">控件基础</router-link>
         </el-collapse-item>
 
-        <!--VUE部分-->
+          <!--Overlay-->
+
+        <!----------------------------------------------VUE部分-------------------------------------------------->
           <el-collapse-item title="vue案例" name="5">
               <router-link class="link-item" to="/vue/ArchiveComponent">动态组件</router-link>
               <router-link class="link-item" to="/vue/SlotIndex">插槽</router-link>
@@ -106,6 +108,12 @@
                 padding-left: 15px;
             }
           }
+            &:nth-child(5){
+                .el-collapse-item__header{
+                    font-size: 16px;
+                    font-weight: bold!important;
+                }
+            }
         }
       }
       .link-item{
