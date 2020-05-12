@@ -3,7 +3,7 @@
 <!-------------------笔记------------------>
 <div class="notes hidden">
 <pre>
-    OpenLayers学习文档：http://weilin.me/ol3-primer/
+    OpenLayers学习文档：http://linwei.xyz/ol3-primer/ch12/12-01.html
 
     在openlayers中，一副地图就是一个 ol.Map对象，它的基本构成为：
     map就是一个摄影系统:
@@ -18,7 +18,9 @@
 </template>
 
 <script>
-    /**1.引入样式文件*/
+    /**
+     * 1.引入样式文件
+     */
     import "ol/ol.css";
     // 按需引入需要的模块
     import { Map, View } from "ol";
@@ -28,11 +30,15 @@
         name: "Map",
         data () {
             return {
-                /**3定义map,便于重复调用*/
+                /**
+                 * 3定义map,便于重复调用
+                 */
                 map: null
             }
         },
-        /**2.在mounted钩子中创建地图实例*/
+        /**
+         * 2.在mounted钩子中创建地图实例*
+         */
         mounted() {
             // var mapcontainer = this.$refs.rootmap;
             //创建地图

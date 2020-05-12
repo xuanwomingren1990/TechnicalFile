@@ -1,5 +1,13 @@
 <template>
-    <div class="container">{{hello}}</div>
+    <div class="container">
+        <div style="margin-bottom: 30px">当前组件：
+            <span style="color: lime;font-weight: bold">B</span>
+        </div>
+        <span>{{hello}}</span>
+
+        <!--在子组件中切换动态组件-->
+        <div class="checkout" @click="checkoutToA">切换到组件A</div>
+    </div>
 </template>
 
 <script>
@@ -7,16 +15,16 @@
         name: "TabComponentB",
         data () {
             return {
-                hello: 'BBBBBB'
+                hello: '这是B组件内容要展示的内容'
             }
         },
         /**
-        keep-alive 组件激活时调用该钩子函数;
-        即：当切换到本组件的时候，会先执行activated钩子，会在两秒后显示本组件，起到了延迟加载的作用。
-         **/
+         * keep-alive 组件激活时调用该钩子函数;
+         * 即：当切换到本组件的时候，会先执行activated钩子，会在两秒后显示本组件，起到了延迟加载的作用。
+         */
         activated: function () {
-            console.log('hhh')
-
+            debugger
+            console.log('activated')
             var self = this;
 
             var startTime = new Date().getTime();
@@ -26,6 +34,11 @@
                 self.hello='我是延迟后的内容';
             }
 
+        },
+        methods:{
+            checkoutToA(){
+                this.$emit('checkout','TabComponent_A')
+            }
         }
     }
 </script>
@@ -33,6 +46,16 @@
 <style lang="scss" scoped>
 .container{
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
+    margin-top: 20vh;
+
+    .checkout{
+        margin-top: 20px;
+        background-color: lime;
+        border-radius: 10px;
+        padding: 5px;
+    }
 }
 </style>

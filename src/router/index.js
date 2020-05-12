@@ -15,18 +15,19 @@ import TileSourceXYZ from '@/components/Openlayers/Source_Layer/TileSource/TileS
 import TileSourceXYZ_Baidu_Formal from '@/components/Openlayers/Source_Layer/TileSource/TileSourceXYZ_Baidu_Formal.vue'
 import TileSourceXYZ_Baidu_Test from '@/components/Openlayers/Source_Layer/TileSource/TileSourceXYZ_Baidu_Test.vue'
 import TileSourceTileImage from '@/components/Openlayers/Source_Layer/TileSource/TileSourceTileImage.vue'
+import DiffusedCircle from '@/components/Openlayers/OverLay/DiffusedCircle.vue'
 
-// vue 案例
-import ArchiveComponent from '../components/Vue/ArchiveComponent/index.vue'
-import SlotIndex from '../components/Vue/Slot/Index.vue'
-import WatchIndex from '../components/Vue/WatchProperty/index.vue'
-// vue自定义组件
-import CustomComponentIndex from '../components/Vue/CustomComponents/Index.vue'
-import CustomPluginsIndex from '../components/Vue/Plugins/index.vue'
+/**********************************vue 案例*****************************************/
+import ArchiveComponent from '../components/Vue/ArchiveComponent/index.vue'//动态组件
+import SlotIndex from '../components/Vue/Slot/Index.vue'//插槽
+import WatchIndex from '../components/Vue/WatchProperty/index.vue'//监听器
+import CustomComponentIndex from '../components/Vue/CustomComponents/Index.vue'// vue自定义组件的使用
+import CustomPluginsIndex from '../components/Vue/Plugins/index.vue'//插件的使用
 
 Vue.use(VueRouter)
 
 const routes = [
+    /********地图相关路由*******/
     {
         path: '/',
         redirect: '/olMap'
@@ -96,9 +97,13 @@ const routes = [
         name: 'TileSourceTileImage',
         component: TileSourceTileImage
     },
+    {
+        path: '/OverLay/DiffusedCircle',
+        name: 'DiffusedCircle',
+        component: DiffusedCircle
+    },
 
-
-    // VUE
+    /***********VUE相关路由*********/
     {
         path: '/vue/ArchiveComponent',
         name: 'ArchiveComponent',
