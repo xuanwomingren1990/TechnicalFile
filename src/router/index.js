@@ -25,7 +25,7 @@ import CustomComponentIndex from '@/components/Vue/CustomComponents/Index.vue'//
 import CustomPluginsIndex from '@/components/Vue/Plugins/index.vue'//插件的使用
 
 /****************************************CSS、SASS******************************************/
-import CssIndex from '@/components/Vue/CSS/index.vue'//插件的使用
+import CssIndex from '@/components/Vue/CSS/Index.vue'//插件的使用
 
 Vue.use(VueRouter)
 

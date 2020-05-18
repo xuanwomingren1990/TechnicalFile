@@ -9,15 +9,20 @@ import 'element-ui/lib/theme-chalk/index.css';
 import 'animate.css'
 
 // 自定义全局js样式变量
-import styleVariables from '@/styles/styleVariables.js'
+// import styleVariables from '@/styles/styleVariables.js'
+let styleVariables = require('@/styles/styleVariables.js')
+
+// import module1 from '@/components/Vue/CSS/module1.js'
+// console.log(module1)
+
+
 Vue.prototype.$styleVariables = styleVariables
 
-console.log(styleVariables)
-
 import myPlugin from '@/components/Vue/Plugins/index.js'
+Vue.use(myPlugin)
 
 Vue.use(ElementUI)
-Vue.use(myPlugin)
+
 
 Vue.config.productionTip = false
 

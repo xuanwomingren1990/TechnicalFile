@@ -26,7 +26,7 @@
 
 <script>
     export default {
-        name: "index",
+        name: "Configuration",
         data(){
             return{
                 // 1.js中使用全局js样式变量

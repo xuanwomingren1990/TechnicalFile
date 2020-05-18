@@ -44,7 +44,7 @@ const myPlugin = {
                 }
             }
         }
-        // 添加全局方法，调用方式：$vue.setAnimation()
+        // 添加全局方法，调用方式：Vue.setAnimation()
         Vue.setAnimation = setAnimation
         // 添加实例方法，调用方式：this.$setAnimation()
         Vue.prototype.$setAnimation = setAnimation
