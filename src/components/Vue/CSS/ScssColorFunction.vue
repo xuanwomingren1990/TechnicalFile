@@ -12,6 +12,8 @@
 </template>
 
 <script>
+    // js中使用scss中的变量
+    import colors from '@/styles/resource-variables.scss'
     export default {
         name: "ScssColorFunction",
         data(){
@@ -26,6 +28,10 @@
                     'building'
                 ]
             }
+        },
+        created(){
+            console.log(colors.waterColor1)
+            console.log(colors.waterColor2)
         }
     }
 
@@ -50,24 +56,32 @@
     $legend-building: #8d8d8d;
 
 
-    @mixin serColor($type,$baseColor){
+    @mixin serColor(
+        $type,
+        $baseColor,
+        $level1:30%,
+        $level2:20%,
+        $level3:10%,
+        $level4:0%,
+        $level5:10%,
+        $level6:20%){
         .#{$type}-color-1{
-            background-color: darken($baseColor, 30%);
+            background-color: darken($baseColor, $level1);
         }
         .#{$type}-color-2{
-            background-color: darken($baseColor, 20%);
+            background-color: darken($baseColor, $level2);
         }
         .#{$type}-color-3{
-            background-color: darken($baseColor,10%);
+            background-color: darken($baseColor, $level3);
         }
         .#{$type}-color-4{
-            background-color: lighten($baseColor, 0%);
+            background-color: lighten($baseColor, $level4);
         }
         .#{$type}-color-5{
-            background-color: lighten($baseColor, 8%);
+            background-color: lighten($baseColor, $level5);
         }
         .#{$type}-color-6{
-            background-color: lighten($baseColor, 16%);
+            background-color: lighten($baseColor, $level6);
         }
     }
 
