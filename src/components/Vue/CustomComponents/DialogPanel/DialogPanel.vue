@@ -20,6 +20,7 @@
             :visible.sync="dialogVisible"
             custom-class="custom-dialog"
             :modal="false"
+            :show-close="false"
             :before-close="handleClose"
             width="30%">
         <slot></slot>
