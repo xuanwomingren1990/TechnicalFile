@@ -2,6 +2,7 @@
   <div id="app">
     <div class="router-links">
       <el-collapse>
+          <!----------------------------------------------Openlayers部分-------------------------------------------------->
         <!--Map-->
         <el-collapse-item title="Map" name="1">
           <router-link class="link-item" to="/olMap">地图基础</router-link>
@@ -47,6 +48,11 @@
               <router-link class="link-item" to="/vue/Components">自定义组件</router-link>
               <router-link class="link-item" to="/vue/Plugins">插件</router-link>
               <router-link class="link-item" to="/vue/CSS">SCASS</router-link>
+          </el-collapse-item>
+
+          <!----------------------------------------------EChart部分-------------------------------------------------->
+          <el-collapse-item title="EChart案例" name="6">
+              <router-link class="link-item" to="//EChart/K">K线图</router-link>
           </el-collapse-item>
       </el-collapse>
     </div>

@@ -27,6 +27,11 @@ import CustomPluginsIndex from '@/components/Vue/Plugins/index.vue'//插件的�
 /****************************************CSS、SASS******************************************/
 import CssIndex from '@/components/Vue/CSS/Index.vue'//插件的使用
 
+/****************************************EChart******************************************/
+import echartK from '@/components/EChart/chart_K/echart-k.vue'//插件的使用
+
+
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -137,7 +142,14 @@ const routes = [
         path: '/vue/CSS',
         name: 'CssIndex',
         component: CssIndex
+    },
+    /************echart相关路由************/
+    {
+        path: '/EChart/K',
+        name: 'echartK',
+        component: echartK
     }
+
 ]
 
 const router = new VueRouter({
