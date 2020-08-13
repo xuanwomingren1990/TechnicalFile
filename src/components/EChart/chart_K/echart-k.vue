@@ -10,6 +10,12 @@
             <el-button size="small" type="primary" @click="displayByWeek">周</el-button>
             <el-button size="small" type="primary" @click="displayByMonth">月</el-button>
         </div>
+
+        <div class="legend-list">
+            <!--通过自定义dom元素触发图例事件-->
+            <el-button size="small" type="primary" @click="legendToggleSelect('峰值')">峰值</el-button>
+            <el-button size="small" type="primary" @click="legendToggleSelect('走势')">走势</el-button>
+        </div>
     </div>
 </template>
 
@@ -59,11 +65,13 @@
 
                 let option = {
                     backgroundColor: '#000',
+                    // 隐藏legend,通过自定义dom元素触发图例事件
                     legend: {
-                        data: ['K', '均值'],
-                        inactiveColor: '#777',
-                        textStyle: {
-                            color: '#fff'
+                        itemWidth:0,
+                        itemHeight:0,
+                        textStyle:{
+                            color:'#000',
+                            fontSize:1
                         }
                     },
                     tooltip: {
@@ -152,7 +160,7 @@
                     series: [
                         {
                             type: 'candlestick',
-                            name: 'K',
+                            name: '峰值',
                             data: kData,
                             itemStyle: {
                                 borderColor: '#0CF49B',
@@ -165,7 +173,7 @@
                             progressiveThreshold:2000
                         },
                         {
-                            name: '均值',
+                            name: '走势',
                             type: 'line',
                             data: trendData,
                             smooth: true,
@@ -209,7 +217,6 @@
                 this.rawData = rawData.filter((crr,index)=>{
                     return index % (7 * 24) === 0
                 })
-                console.log(forecastData)
                 this.forecastData = forecastData.filter((crr,index)=>{
                     return (index + 1) % 24 === 0
                 })
@@ -227,6 +234,13 @@
 
                 this.exChart = this.$echarts.init(document.getElementById('chart-ex'))
                 this.exChart.setOption(this.exOption)
+            },
+            legendToggleSelect(name){
+                this.exChart.dispatchAction({
+                    type: 'legendToggleSelect',
+                    // 图例名称
+                    name: name
+                })
             }
         },
         mounted(){
@@ -238,6 +252,7 @@
     .wrapper{
         width: 100%;
         height: 100%;
+        position: relative;
     }
     .chart-list{
         width: 100%;
@@ -249,9 +264,15 @@
     }
     .btn-list{
         width: 100%;
-        position: fixed;
-        left: 0px;
-        top: 25px;
+        position: absolute;
+        top: 45px;
+        display: flex;
+        justify-content: center;
+    }
+    .legend-list{
+        width: 100%;
+        position: absolute;
+        top: 5px;
         display: flex;
         justify-content: center;
     }
