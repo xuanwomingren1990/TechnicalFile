@@ -13,6 +13,16 @@
             <el-button size="small" type="primary" @click="legendToggleSelect('峰值')">峰值</el-button>
             <el-button size="small" type="primary" @click="legendToggleSelect('走势')">走势</el-button>
         </div>
+
+        <div class="custom-scrollbar">
+            <el-slider
+                    v-model="densityLevel"
+                    :max="4"
+                    :min="1"
+                    :step="1"
+                    show-input>
+            </el-slider>
+        </div>
     </div>
 </template>
 
@@ -28,7 +38,7 @@
                 rawData:[],
                 forecastData:[],
 
-                densityLevel:0
+                densityLevel:1
             }
         },
         computed:{
@@ -118,7 +128,7 @@
                         max:max + 0.5,
                     },
                     grid: {
-                        bottom: 80
+                        bottom: 160
                     },
                     // 数据窗口
                     dataZoom: [
@@ -145,7 +155,8 @@
                                 shadowOffsetY: 2
                             },
                             startValue:startValue,
-                            endValue:endValue
+                            endValue:endValue,
+                            bottom:80
                         },
                         {
                             type: 'inside',
@@ -229,6 +240,42 @@
 
 
                 return option
+            },
+            dataHour(){
+                return{
+                    rawData: deepClone(rawData),
+                    forecastData: deepClone(forecastData)
+                }
+            },
+            dataDay(){
+               return{
+                   rawData: rawData.filter((crr,index)=>{
+                       return index % 24 === 0
+                   }),
+                   forecastData: forecastData.filter((crr,index)=>{
+                       return (index + 1) % 24 === 0
+                   })
+               }
+            },
+            dataWeek(){
+                return{
+                    rawData: rawData.filter((crr,index)=>{
+                        return index % (7 * 24) === 0
+                    }),
+                    forecastData: forecastData.filter((crr,index)=>{
+                        return (index + 1) % 24 === 0
+                    })
+                }
+            },
+            dataMonth(){
+                return{
+                    rawData: rawData.filter((crr,index)=>{
+                        return index % (30 * 24) === 0
+                    }),
+                    forecastData: forecastData.filter((crr,index)=>{
+                        return (index + 1) % 24 === 0
+                    })
+                }
             }
         },
         methods:{
@@ -271,30 +318,6 @@
 
                 this.exChart = this.$echarts.init(document.getElementById('chart-ex'))
                 this.exChart.setOption(this.exOption)
-
-                let that = this
-                this.exChart.on('dataZoom',function (params) {
-                    console.log(params)
-                    if (params.batch){
-                        // console.log('--------batch--------')
-                        let start = params.batch[0].start
-                        let end = params.batch[0].end
-                        // console.log(start)
-                        // console.log(end)
-                        if (end - start <= 10) {
-                            that.densityLevel = 10
-                        }
-                        else if (end - start <= 20) {
-                            that.densityLevel = 5
-                        }
-                        else if (end - start <= 50) {
-                            that.densityLevel = 2
-                        }
-                        else if (end - start <= 100) {
-                            that.densityLevel = 1
-                        }
-                    }
-                })
             },
             legendToggleSelect(name){
                 this.exChart.dispatchAction({
@@ -306,17 +329,37 @@
         },
         watch:{
             densityLevel(newValue){
-                console.log(newValue)
-                if (newValue>1){
+                if (newValue == 1){
                     this.rawData = rawData.filter((crr,index)=>{
-                        return index % newValue=== 0
+                        return index % 64 === 0
                     })
                     this.forecastData = forecastData.filter((crr,index)=>{
-                        return (index + 1) % newValue === 0
+                        return (index + 1) % 64 === 0
                     })
-                    this.exChart = this.$echarts.init(document.getElementById('chart-ex'))
-                    this.exChart.setOption(this.exOption)
                 }
+                else if (newValue == 2){
+                    this.rawData = rawData.filter((crr,index)=>{
+                        return index % 16 === 0
+                    })
+                    this.forecastData = forecastData.filter((crr,index)=>{
+                        return (index + 1) % 16 === 0
+                    })
+                }
+                else if (newValue == 3){
+                    this.rawData = rawData.filter((crr,index)=>{
+                        return index % 4 === 0
+                    })
+                    this.forecastData = forecastData.filter((crr,index)=>{
+                        return (index + 1) % 4 === 0
+                    })
+                }
+                else if (newValue == 4){
+                    this.rawData = deepClone(rawData)
+                    this.forecastData = deepClone(forecastData)
+                }
+
+                this.exChart = this.$echarts.init(document.getElementById('chart-ex'))
+                this.exChart.setOption(this.exOption)
             }
         },
         mounted(){
@@ -324,7 +367,7 @@
         }
     }
 </script>
-<style scoped>
+<style lang="scss" scoped>
     .wrapper{
         width: 100%;
         height: 100%;
@@ -347,5 +390,15 @@
         top: 5px;
         display: flex;
         justify-content: center;
+    }
+    .custom-scrollbar{
+        width: 100%;
+        position: absolute;
+        bottom: 5px;
+        display: flex;
+        justify-content: center;
+        &>.el-slider{
+            width: 80%;
+        }
     }
 </style>
