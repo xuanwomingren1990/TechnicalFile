@@ -26,7 +26,9 @@
             return{
                 exChart: null,
                 rawData:[],
-                forecastData:[]
+                forecastData:[],
+
+                densityLevel:0
             }
         },
         computed:{
@@ -269,6 +271,30 @@
 
                 this.exChart = this.$echarts.init(document.getElementById('chart-ex'))
                 this.exChart.setOption(this.exOption)
+
+                let that = this
+                this.exChart.on('dataZoom',function (params) {
+                    console.log(params)
+                    if (params.batch){
+                        // console.log('--------batch--------')
+                        let start = params.batch[0].start
+                        let end = params.batch[0].end
+                        // console.log(start)
+                        // console.log(end)
+                        if (end - start <= 10) {
+                            that.densityLevel = 10
+                        }
+                        else if (end - start <= 20) {
+                            that.densityLevel = 5
+                        }
+                        else if (end - start <= 50) {
+                            that.densityLevel = 2
+                        }
+                        else if (end - start <= 100) {
+                            that.densityLevel = 1
+                        }
+                    }
+                })
             },
             legendToggleSelect(name){
                 this.exChart.dispatchAction({
@@ -276,6 +302,21 @@
                     // 图例名称
                     name: name
                 })
+            }
+        },
+        watch:{
+            densityLevel(newValue){
+                console.log(newValue)
+                if (newValue>1){
+                    this.rawData = rawData.filter((crr,index)=>{
+                        return index % newValue=== 0
+                    })
+                    this.forecastData = forecastData.filter((crr,index)=>{
+                        return (index + 1) % newValue === 0
+                    })
+                    this.exChart = this.$echarts.init(document.getElementById('chart-ex'))
+                    this.exChart.setOption(this.exOption)
+                }
             }
         },
         mounted(){

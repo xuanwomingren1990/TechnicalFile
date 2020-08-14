@@ -11,9 +11,6 @@ let dataArray = []
 
 const date = new Date(2020,7,14,1)
 export const milliseconds = date.getTime()
-console.log('--------------toLocaleString---------------')
-console.log(date.toLocaleString())
-
 
 for (let i = 0; i <= total; i++){
     let avarage = 20 + getRandomValue()
