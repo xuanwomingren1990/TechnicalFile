@@ -1,9 +1,6 @@
 <template>
     <div class="wrapper">
-        <div class="chart-list">
-            <div id="chart-ex"></div>
-            <div id="chart-forecast"></div>
-        </div>
+        <div id="chart-ex"></div>
         <div class="btn-list">
             <el-button size="small" type="primary" @click="displayByHour">时</el-button>
             <el-button size="small" type="primary" @click="displayByDay">日</el-button>
@@ -103,7 +100,13 @@
                     xAxis: {
                         type: 'category',
                         data: dates,
-                        axisLine: { lineStyle: { color: '#8392A5' } }
+                        axisLine: { lineStyle: { color: '#8392A5' } },
+                        axisLabel:{
+                            formatter: function (value, index) {
+                                let arr = value.split(" ")
+                                return arr[0] + '\n' + arr[1]
+                            }
+                        }
                     },
                     yAxis: {
                         // scale: true,
@@ -170,7 +173,39 @@
                             barWidth:10,
 
                             progressive:200,
-                            progressiveThreshold:2000
+                            progressiveThreshold:2000,
+
+                            markPoint: {
+                                label: {
+                                    normal: {
+                                        formatter: function (param) {
+                                            return param != null ? Math.round(param.value) : '';
+                                        }
+                                    }
+                                },
+                                data: [
+                                    {
+                                        name: 'highest value',
+                                        type: 'max',
+                                        valueDim: 'highest',
+                                        symbolSize:40
+                                    },
+                                    {
+                                        name: 'lowest value',
+                                        type: 'min',
+                                        valueDim: 'lowest',
+                                        symbolSize:40,
+                                        itemStyle:{
+                                            color:'rgb(0, 0, 122)'
+                                        }
+                                    }
+                                ],
+                                tooltip: {
+                                    formatter: function (param) {
+                                        return param.name + '<br>' + (param.data.coord || '');
+                                    }
+                                }
+                            }
                         },
                         {
                             name: '走势',
@@ -253,10 +288,6 @@
         width: 100%;
         height: 100%;
         position: relative;
-    }
-    .chart-list{
-        width: 100%;
-        height: 100%;
     }
     #chart-ex{
         width: 100%;
