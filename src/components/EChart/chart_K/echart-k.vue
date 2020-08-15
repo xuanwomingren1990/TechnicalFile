@@ -2,10 +2,10 @@
     <div class="wrapper">
         <div id="chart-ex"></div>
         <div class="btn-list">
-            <el-button size="small" type="primary" @click="displayByHour">时</el-button>
-            <el-button size="small" type="primary" @click="displayByDay">日</el-button>
-            <el-button size="small" type="primary" @click="displayByWeek">周</el-button>
-            <el-button size="small" type="primary" @click="displayByMonth">月</el-button>
+            <el-button size="small" type="primary" @click="toggleTimeMode('hour')">时</el-button>
+            <el-button size="small" type="primary" @click="toggleTimeMode('day')">日</el-button>
+            <el-button size="small" type="primary" @click="toggleTimeMode('week')">周</el-button>
+            <el-button size="small" type="primary" @click="toggleTimeMode('month')">月</el-button>
         </div>
 
         <div class="legend-list">
@@ -38,7 +38,8 @@
                 rawData:[],
                 forecastData:[],
 
-                densityLevel:1
+                densityLevel:4,
+                timeMode: ''
             }
         },
         computed:{
@@ -276,48 +277,14 @@
                         return (index + 1) % 24 === 0
                     })
                 }
+            },
+            TimeDensity(){
+                return this.timeMode + "-" + this.densityLevel
             }
         },
         methods:{
-            displayByHour(){
-                this.rawData = deepClone(rawData)
-                this.forecastData = deepClone(forecastData)
-
-                this.exChart = this.$echarts.init(document.getElementById('chart-ex'))
-                this.exChart.setOption(this.exOption)
-            },
-            displayByDay(){
-                this.rawData = rawData.filter((crr,index)=>{
-                    return index % 24 === 0
-                })
-                this.forecastData = forecastData.filter((crr,index)=>{
-                    return (index + 1) % 24 === 0
-                })
-
-                this.exChart = this.$echarts.init(document.getElementById('chart-ex'))
-                this.exChart.setOption(this.exOption)
-            },
-            displayByWeek(){
-                this.rawData = rawData.filter((crr,index)=>{
-                    return index % (7 * 24) === 0
-                })
-                this.forecastData = forecastData.filter((crr,index)=>{
-                    return (index + 1) % 24 === 0
-                })
-
-                this.exChart = this.$echarts.init(document.getElementById('chart-ex'))
-                this.exChart.setOption(this.exOption)
-            },
-            displayByMonth(){
-                this.rawData = rawData.filter((crr,index)=>{
-                    return index % (30 * 24) === 0
-                })
-                this.forecastData = forecastData.filter((crr,index)=>{
-                    return (index + 1) % 24 === 0
-                })
-
-                this.exChart = this.$echarts.init(document.getElementById('chart-ex'))
-                this.exChart.setOption(this.exOption)
+            toggleTimeMode(timeMode){
+                this.timeMode = timeMode
             },
             legendToggleSelect(name){
                 this.exChart.dispatchAction({
@@ -328,42 +295,71 @@
             }
         },
         watch:{
-            densityLevel(newValue){
-                if (newValue == 1){
-                    this.rawData = rawData.filter((crr,index)=>{
+            TimeDensity(newValue){
+                let arr = newValue.split('-')
+                let timeMode = arr[0]
+                let densityLevel = arr[1]
+                console.log(timeMode)
+                console.log(densityLevel)
+
+                let rawData = []
+                let forecastData = []
+                if(timeMode == 'month'){
+                    rawData = this.dataMonth.rawData
+                    forecastData = this.dataMonth.forecastData
+                }
+                else if(timeMode == 'week'){
+                    rawData = this.dataWeek.rawData
+                    forecastData = this.dataWeek.forecastData
+                }
+                else if(timeMode == 'day'){
+                    rawData = this.dataDay.rawData
+                    forecastData = this.dataDay.forecastData
+                }
+                else if(timeMode == 'hour'){
+                    rawData = this.dataHour.rawData
+                    forecastData = this.dataHour.forecastData
+                }
+
+                let rawData_sample = []
+                let forecastData_sample = []
+                if (densityLevel == 1){
+                    rawData_sample = rawData.filter((crr,index)=>{
                         return index % 64 === 0
                     })
-                    this.forecastData = forecastData.filter((crr,index)=>{
+                    forecastData_sample = forecastData.filter((crr,index)=>{
                         return (index + 1) % 64 === 0
                     })
                 }
-                else if (newValue == 2){
-                    this.rawData = rawData.filter((crr,index)=>{
+                else if (densityLevel == 2){
+                    rawData_sample = rawData.filter((crr,index)=>{
                         return index % 16 === 0
                     })
-                    this.forecastData = forecastData.filter((crr,index)=>{
+                    forecastData_sample = forecastData.filter((crr,index)=>{
                         return (index + 1) % 16 === 0
                     })
                 }
-                else if (newValue == 3){
-                    this.rawData = rawData.filter((crr,index)=>{
+                else if (densityLevel == 3){
+                    rawData_sample = rawData.filter((crr,index)=>{
                         return index % 4 === 0
                     })
-                    this.forecastData = forecastData.filter((crr,index)=>{
+                    forecastData_sample = forecastData.filter((crr,index)=>{
                         return (index + 1) % 4 === 0
                     })
                 }
-                else if (newValue == 4){
-                    this.rawData = deepClone(rawData)
-                    this.forecastData = deepClone(forecastData)
+                else if (densityLevel == 4){
+                    rawData_sample = deepClone(rawData)
+                    forecastData_sample = deepClone(forecastData)
                 }
 
+                this.rawData = rawData_sample
+                this.forecastData = forecastData_sample
                 this.exChart = this.$echarts.init(document.getElementById('chart-ex'))
                 this.exChart.setOption(this.exOption)
             }
         },
         mounted(){
-            this.displayByMonth()
+            this.timeMode = 'month'
         }
     }
 </script>

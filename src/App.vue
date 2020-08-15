@@ -19,20 +19,23 @@
         <!--</el-collapse-item>-->
 
         <!--Source和Layer-->
-        <!--<el-collapse-item title="Source和Layer" name="3">-->
-          <!--<el-collapse>-->
-            <!--<el-collapse-item title="TileSource" name="31">-->
-              <!--<router-link class="link-item" to="/TileSourceOnline">最简单的加载在线地图</router-link>-->
-              <!--<router-link class="link-item" to="/TileSourceXYZ">XYZ加载在线瓦片地图</router-link>-->
-              <!--<router-link class="link-item" to="/TileSourceXYZ/Baidu/Test">XYZ加载百度地图(测试)</router-link>-->
-              <!--<router-link class="link-item" to="/TileSourceXYZ/Baidu/Formal">XYZ加载百度地图(正式)</router-link>-->
-              <!--<router-link class="link-item" to="/TileSourceTileImage">TileSourceTileImage加载百度地图</router-link>-->
-            <!--</el-collapse-item>-->
-          <!--</el-collapse>-->
-        <!--</el-collapse-item>-->
+        <el-collapse-item title="Source和Layer" name="3">
+          <el-collapse>
+            <el-collapse-item title="TileSource" name="31">
+              <router-link class="link-item" to="/TileSourceOnline">最简单的加载在线地图</router-link>
+              <router-link class="link-item" to="/TileSourceXYZ">XYZ加载在线瓦片地图</router-link>
+              <router-link class="link-item" to="/TileSourceXYZ/Baidu/Test">XYZ加载百度地图(测试)</router-link>
+              <router-link class="link-item" to="/TileSourceXYZ/Baidu/Formal">XYZ加载百度地图(正式)</router-link>
+              <router-link class="link-item" to="/TileSourceTileImage">TileSourceTileImage加载百度地图</router-link>
+            </el-collapse-item>
+          </el-collapse>
+        </el-collapse-item>
+      <el-collapse-item title="geoserver服务" name="4">
+          <router-link class="link-item" to="/Geoserver/WFS">getFeature</router-link>
+      </el-collapse-item>
 
         <!--Control-->
-        <!--<el-collapse-item title="Control" name="4">-->
+        <!--<el-collapse-item title="Control" name="5">-->
           <!--<router-link class="link-item" to="/ControlIndex">控件基础</router-link>-->
         <!--</el-collapse-item>-->
 
@@ -41,7 +44,7 @@
               <!--<router-link class="link-item" to="/OverLay/DiffusedCircle">扩散的圆</router-link>-->
           <!--</el-collapse-item>-->
         <!----------------------------------------------VUE部分-------------------------------------------------->
-          <!--<el-collapse-item title="vue案例" name="5">-->
+          <!--<el-collapse-item title="vue案例" name="6">-->
               <!--<router-link class="link-item" to="/vue/ArchiveComponent">动态组件</router-link>-->
               <!--<router-link class="link-item" to="/vue/SlotIndex">插槽</router-link>-->
               <!--<router-link class="link-item" to="/vue/WatchIndex">监听器</router-link>-->
@@ -51,7 +54,7 @@
           <!--</el-collapse-item>-->
 
           <!----------------------------------------------EChart部分-------------------------------------------------->
-          <el-collapse-item title="EChart案例" name="6">
+          <el-collapse-item title="EChart案例" name="7">
               <router-link class="link-item" to="/EChart/K">K线图</router-link>
           </el-collapse-item>
       </el-collapse>

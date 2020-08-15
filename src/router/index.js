@@ -16,6 +16,7 @@ import TileSourceXYZ_Baidu_Formal from '@/components/Openlayers/Source_Layer/Til
 import TileSourceXYZ_Baidu_Test from '@/components/Openlayers/Source_Layer/TileSource/TileSourceXYZ_Baidu_Test.vue'
 import TileSourceTileImage from '@/components/Openlayers/Source_Layer/TileSource/TileSourceTileImage.vue'
 import DiffusedCircle from '@/components/Openlayers/OverLay/DiffusedCircle.vue'
+import WFS from '@/components/Openlayers/GeoserverResource/WFS.vue'
 
 /**********************************vue 案例*****************************************/
 import ArchiveComponent from '@/components/Vue/ArchiveComponent/index.vue'//动态组件
@@ -110,7 +111,11 @@ const routes = [
         name: 'DiffusedCircle',
         component: DiffusedCircle
     },
-
+    {
+        path: '/Geoserver/WFS',
+        name: 'WFS',
+        component: WFS
+    },
     /***********VUE相关路由*********/
     {
         path: '/vue/ArchiveComponent',
