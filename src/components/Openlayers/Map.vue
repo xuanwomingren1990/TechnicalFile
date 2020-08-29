@@ -4,6 +4,7 @@
 <div class="notes hidden">
 <pre>
     OpenLayers学习文档：http://linwei.xyz/ol3-primer/ch12/12-01.html
+    OpenLayers学习文档：http://linwei.xyz/ol3-primer/ch12/12-01.html
 
     在openlayers中，一副地图就是一个 ol.Map对象，它的基本构成为：
     map就是一个摄影系统:

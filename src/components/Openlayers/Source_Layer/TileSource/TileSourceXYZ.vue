@@ -46,12 +46,6 @@
                 source: new XYZ({
                     url:'http://{a-c}.tile.openstreetmap.org/{z}/{x}/{y}.png',
                     tileUrlFunction: function (tileCoord) {
-                        debugger
-
-                        /*
-                          zoom = 0
-
-                         */
                     }
                 })
             });

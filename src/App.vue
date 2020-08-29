@@ -4,19 +4,19 @@
       <el-collapse>
           <!----------------------------------------------Openlayers部分-------------------------------------------------->
         <!--Map-->
-        <!--<el-collapse-item title="Map" name="1">-->
-          <!--<router-link class="link-item" to="/olMap">地图基础</router-link>-->
-          <!--<router-link class="link-item" to="/MapExchange">动态交换地图</router-link>-->
-          <!--<router-link class="link-item" to="/MapLinkage">地图联动</router-link>-->
-        <!--</el-collapse-item>-->
+        <el-collapse-item title="Map" name="1">
+          <router-link class="link-item" to="/olMap">地图基础</router-link>
+          <router-link class="link-item" to="/MapExchange">动态交换地图</router-link>
+          <router-link class="link-item" to="/MapLinkage">地图联动</router-link>
+        </el-collapse-item>
 
         <!--View-->
-        <!--<el-collapse-item title="View" name="2">-->
-          <!--<router-link class="link-item" to="/ViewNavigation">地图导航</router-link>-->
-          <!--<router-link class="link-item" to="/ViewExtent">限制地图范围</router-link>-->
-          <!--<router-link class="link-item" to="/ViewMinMaxZoom">限制地图缩放级别</router-link>-->
-          <!--<router-link class="link-item" to="/ViewFitExtent">自适配区域</router-link>-->
-        <!--</el-collapse-item>-->
+        <el-collapse-item title="View" name="2">
+          <router-link class="link-item" to="/ViewNavigation">地图导航</router-link>
+          <router-link class="link-item" to="/ViewExtent">限制地图范围</router-link>
+          <router-link class="link-item" to="/ViewMinMaxZoom">限制地图缩放级别</router-link>
+          <router-link class="link-item" to="/ViewFitExtent">自适配区域</router-link>
+        </el-collapse-item>
 
         <!--Source和Layer-->
         <el-collapse-item title="Source和Layer" name="3">
@@ -30,35 +30,38 @@
             </el-collapse-item>
           </el-collapse>
         </el-collapse-item>
-      <el-collapse-item title="geoserver服务" name="4">
+
+        <el-collapse-item title="geoserver服务" name="4">
           <router-link class="link-item" to="/Geoserver/WFS">getFeature</router-link>
-      </el-collapse-item>
+        </el-collapse-item>
 
         <!--Control-->
-        <!--<el-collapse-item title="Control" name="5">-->
-          <!--<router-link class="link-item" to="/ControlIndex">控件基础</router-link>-->
-        <!--</el-collapse-item>-->
+        <el-collapse-item title="Control" name="5">
+          <router-link class="link-item" to="/ControlIndex">控件基础</router-link>
+        </el-collapse-item>
 
         <!--Overlay-->
-          <!--<el-collapse-item title="Overlay" name="4">-->
-              <!--<router-link class="link-item" to="/OverLay/DiffusedCircle">扩散的圆</router-link>-->
-          <!--</el-collapse-item>-->
+          <el-collapse-item title="Overlay" name="6">
+              <router-link class="link-item" to="/OverLay/DiffusedCircle">扩散的圆</router-link>
+          </el-collapse-item>
+
         <!----------------------------------------------VUE部分-------------------------------------------------->
-          <!--<el-collapse-item title="vue案例" name="6">-->
-              <!--<router-link class="link-item" to="/vue/ArchiveComponent">动态组件</router-link>-->
-              <!--<router-link class="link-item" to="/vue/SlotIndex">插槽</router-link>-->
-              <!--<router-link class="link-item" to="/vue/WatchIndex">监听器</router-link>-->
-              <!--<router-link class="link-item" to="/vue/Components">自定义组件</router-link>-->
-              <!--<router-link class="link-item" to="/vue/Plugins">插件</router-link>-->
-              <!--<router-link class="link-item" to="/vue/CSS">SCASS</router-link>-->
-          <!--</el-collapse-item>-->
+          <el-collapse-item title="vue案例" name="7">
+              <router-link class="link-item" to="/vue/ArchiveComponent">动态组件</router-link>
+              <router-link class="link-item" to="/vue/SlotIndex">插槽</router-link>
+              <router-link class="link-item" to="/vue/WatchIndex">监听器</router-link>
+              <router-link class="link-item" to="/vue/Components">自定义组件</router-link>
+              <router-link class="link-item" to="/vue/Plugins">插件</router-link>
+              <router-link class="link-item" to="/vue/CSS">SCASS</router-link>
+          </el-collapse-item>
 
           <!----------------------------------------------EChart部分-------------------------------------------------->
-          <el-collapse-item title="EChart案例" name="7">
+          <el-collapse-item title="EChart案例" name="8">
               <router-link class="link-item" to="/EChart/K">K线图</router-link>
           </el-collapse-item>
       </el-collapse>
     </div>
+
     <div class="map-components">
       <el-button
               type="primary" size="mini" v-on:click="showNotes" style="
