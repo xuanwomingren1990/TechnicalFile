@@ -14,10 +14,15 @@ module.exports = {
     devServer: {
         https: false,
         hotOnly: false,
+        // host:'0.0.0.0',
         port:8183,
         proxy: { // 配置跨域
             '/geoserver': {
                 target: 'http://localhost:8080/',
+                changeOrigin: true, //允许跨域
+            },
+            '/igs': {
+                target: 'http://172.17.9.142:6163/',
                 changeOrigin: true, //允许跨域
             }
         },

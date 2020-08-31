@@ -16,7 +16,7 @@
     import "ol/ol.css";
     import Map from "ol/Map";
     import View from "ol/View";
-    import Tile from "ol/layer/Tile";
+    import TileLayer from "ol/layer/Tile";
     import XYZ from "ol/source/XYZ";
     import TileGrid from "ol/tilegrid/TileGrid";
     import { Projection, addProjection, addCoordinateTransforms } from "ol/proj";
@@ -25,7 +25,7 @@
     import { transform } from 'ol/proj'
 
     export default {
-        name: "TileSourceTileImage",
+        name: "TileSourceXYZ_Baidu_1",
         data () {
             return {
                 map : null
@@ -66,7 +66,7 @@
                     ".bdimg.com/tile/?qt=vtile&x={x}&y={y}&z={z}&styles=pl&scaler=1&udt=20191119"
                 );
             });
-            var baidu = new Tile({
+            var baidu = new TileLayer({
                 source: new XYZ({
                     projection: "baidu",
                     maxZoom: 18,

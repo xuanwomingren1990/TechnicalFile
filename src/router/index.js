@@ -10,11 +10,12 @@ import ViewNavigation from '@/components/Openlayers/view/ViewNavigation.vue'
 import ViewExtent from '@/components/Openlayers/view/ViewExtent.vue'
 import ViewMinMaxZoom from '@/components/Openlayers/view/ViewMinMaxZoom.vue'
 import ViewFitExtent from '@/components/Openlayers/view/ViewFitExtent.vue'
-import TileSourceOnline from '@/components/Openlayers/Source_Layer/TileSource/TileSourceOnline.vue'
-import TileSourceXYZ from '@/components/Openlayers/Source_Layer/TileSource/TileSourceXYZ.vue'
-import TileSourceXYZ_Baidu_Formal from '@/components/Openlayers/Source_Layer/TileSource/TileSourceXYZ_Baidu_Formal.vue'
-import TileSourceXYZ_Baidu_Test from '@/components/Openlayers/Source_Layer/TileSource/TileSourceXYZ_Baidu_Test.vue'
-import TileSourceTileImage from '@/components/Openlayers/Source_Layer/TileSource/TileSourceTileImage.vue'
+import TileSourceOnline from '@/components/Openlayers/Source_Layer/Source-Tile/TileSourceOnline.vue'
+import TileSourceXYZ from '@/components/Openlayers/Source_Layer/Source-Tile/TileSourceXYZ.vue'
+import TileSourceXYZ_Baidu_Formal from '@/components/Openlayers/Source_Layer/Source-Tile/TileSourceXYZ_Baidu_Formal.vue'
+import TileSourceXYZ_Baidu_Test from '@/components/Openlayers/Source_Layer/Source-Tile/TileSourceXYZ_Baidu_Test.vue'
+import TileSourceXYZ_Baidu_1 from '@/components/Openlayers/Source_Layer/Source-Tile/TileSourceXYZ_Baidu_1.vue'
+import WMS from '@/components/Openlayers/Source_Layer/WMS-Source/WMS.vue'
 import DiffusedCircle from '@/components/Openlayers/OverLay/DiffusedCircle.vue'
 import WFS from '@/components/Openlayers/GeoserverResource/WFS.vue'
 
@@ -102,9 +103,14 @@ const routes = [
         component: TileSourceXYZ_Baidu_Formal
     },
     {
-        path: '/TileSourceTileImage',
-        name: 'TileSourceTileImage',
-        component: TileSourceTileImage
+        path: '/TileSourceXYZ_Baidu_1',
+        name: 'TileSourceXYZ_Baidu_1',
+        component: TileSourceXYZ_Baidu_1
+    },
+    {
+        path: '/WMS',
+        name: 'WMS',
+        component: WMS
     },
     {
         path: '/OverLay/DiffusedCircle',

@@ -21,13 +21,16 @@
         <!--Source和Layer-->
         <el-collapse-item title="Source和Layer" name="3">
           <el-collapse>
-            <el-collapse-item title="TileSource" name="31">
+            <el-collapse-item title="Tile-Source" name="31">
               <router-link class="link-item" to="/TileSourceOnline">最简单的加载在线地图</router-link>
               <router-link class="link-item" to="/TileSourceXYZ">XYZ加载在线瓦片地图</router-link>
               <router-link class="link-item" to="/TileSourceXYZ/Baidu/Test">XYZ加载百度地图(测试)</router-link>
               <router-link class="link-item" to="/TileSourceXYZ/Baidu/Formal">XYZ加载百度地图(正式)</router-link>
-              <router-link class="link-item" to="/TileSourceTileImage">TileSourceTileImage加载百度地图</router-link>
+              <router-link class="link-item" to="/TileSourceXYZ_Baidu_1">XYZ加载百度地图</router-link>
             </el-collapse-item>
+              <el-collapse-item title="WMS-Source" name="32">
+                  <router-link class="link-item" to="/WMS">WMS服务</router-link>
+              </el-collapse-item>
           </el-collapse>
         </el-collapse-item>
 
@@ -125,8 +128,6 @@
           }
             &:last-child{
                 .el-collapse-item__header{
-                    font-size: 16px;
-                    font-weight: bold!important;
                 }
             }
         }
