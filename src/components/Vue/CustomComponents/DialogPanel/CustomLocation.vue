@@ -1,4 +1,7 @@
 <template>
+    <!--
+    width属性设置为100%，则没有了遮罩层，无法通过点击遮罩关闭对话框；
+    如需要启动遮罩功能，则要修改width属性-->
     <el-dialog
             title="dialog弹框"
             :visible.sync="dialogVisible"
@@ -10,7 +13,6 @@
         <slot></slot>
     </el-dialog>
 </template>
-
 <script>
     export default {
         name: "CustomLocation",
