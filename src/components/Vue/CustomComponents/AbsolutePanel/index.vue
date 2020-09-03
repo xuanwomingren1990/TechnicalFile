@@ -32,7 +32,7 @@ AbsolutePanel组件：
 
 <style lang="scss" scoped>
     .absolutePanel-root{
-        background-color: #e1e1db;
+        background-color: #8d8d8d;
         height: 80vh;
         position: relative;
     }

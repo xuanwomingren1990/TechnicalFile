@@ -1,9 +1,10 @@
 <template>
     <div id="map" ref="rootmap">
+
         <!-------------------笔记------------------>
         <div class="notes hidden">
 <pre>
-
+    <!--&lt;div&gt;&lt;/div&gt;-->
 </pre>
         </div>
         <!-------------------笔记---------------->
@@ -11,64 +12,88 @@
 </template>
 
 <script>
-    import "ol/ol.css";
-    // 按需引入需要的模块
-    import { Map, View } from "ol";
-    import VectorLayer from 'ol/layer/Vector';
+    import 'ol/ol.css';
+    import Map from 'ol/Map';
     import VectorSource from 'ol/source/Vector';
-    import TileLayer from "ol/layer/Tile";
-    import OSM from "ol/source/OSM";
-    import GeoJSON from 'ol/format/GeoJSON';
-    import {transform} from 'ol/proj';
-    import Projection from 'ol/proj/Projection';
-    import axios from 'axios'
+    import View from 'ol/View';
+    import XYZ from 'ol/source/XYZ';
+    import {GeoJSON, WFS} from 'ol/format';
+    import {Stroke, Style} from 'ol/style';
+    import {Tile as TileLayer, Vector as VectorLayer} from 'ol/layer';
+    import {
+        and as andFilter,
+        equalTo as equalToFilter,
+        like as likeFilter,
+    } from 'ol/format/filter';
 
     export default {
-        name: "Map",
+        name: "WFS",
         data () {
             return {
                 map: null
             }
         },
-        methods:{
-            addGeoJSON(src) {
-                var layer = new VectorLayer({
-                    source: new VectorSource({
-                        features: (new GeoJSON()).readFeatures(src, {     // 用readFeatures方法可以自定义坐标系
-                            dataProjection: 'EPSG:4326',    // 设定JSON数据使用的坐标系
-                            featureProjection: 'EPSG:3857' // 设定当前地图使用的feature的坐标系
-                        })
-                    })
-                });
-                this.map.addLayer(layer);
-
-                console.log(layer.getSource().getFeatures())
-            }
-        },
         mounted() {
-            this.map = new Map({
-                target: "map",
-                layers: [
-                    new TileLayer({
-                        source: new OSM()
-                    })
-                ],
-                view: new View({
-                    zoom: 12,//显示级别
-                    center: transform([-74.0104611, 40.70758763],'EPSG:4326','EPSG:3857')
-                })
-            })
+            var vectorSource = new VectorSource();
+            var vector = new VectorLayer({
+                source: vectorSource,
+                style: new Style({
+                    stroke: new Stroke({
+                        color: 'rgba(0, 0, 255, 1.0)',
+                        width: 2,
+                    }),
+                }),
+            });
 
-            // 调用服务，获取geoJson数据。返回数据中包换坐标系统说明：name: "urn:ogc:def:crs:EPSG::4326"；
-            // 如果与geoJson数据所用坐标系统与地图使用坐标系统不一致，需要在添加矢量数据时进行坐标抓换。
-            let url = 'http://localhost:8080/geoserver/tiger/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=tiger%3Apoi&maxFeatures=50&outputFormat=application%2Fjson'
-            axios.get(url)
-                .then((response)=> {
-                    console.log(response)
-                    this.addGeoJSON(response.data)
+            var key = 'Get your own API key at https://www.maptiler.com/cloud/';
+            var attributions =
+                '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> ' +
+                '<a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>';
+
+            var raster = new TileLayer({
+                source: new XYZ({
+                    attributions: attributions,
+                    url: 'https://api.maptiler.com/tiles/satellite/{z}/{x}/{y}.jpg?key=' + key,
+                    maxZoom: 20,
+                }),
+            });
+
+
+            //创建地图
+            let map = new Map({
+                target: "map",
+                layers: [raster, vector],
+                view: new View({
+                    center: [-8908887.277395891, 5381918.072437216],
+                    maxZoom: 19,
+                    zoom: 12,
                 })
-                .catch(function (error) {
-                    console.log(error);
+            });
+
+            var featureRequest = new WFS().writeGetFeature({
+                srsName: 'EPSG:3857',
+                featureNS: 'http://openstreemap.org',
+                featurePrefix: 'osm',
+                featureTypes: ['water_areas'],
+                outputFormat: 'application/json',
+                filter: andFilter(
+                    likeFilter('name', 'Mississippi*'),
+                    equalToFilter('waterway', 'riverbank')
+                ),
+            });
+            console.log(featureRequest)
+
+            fetch('https://ahocevar.com/geoserver/wfs', {
+                method: 'POST',
+                body: new XMLSerializer().serializeToString(featureRequest),
+            })
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (json) {
+                    var features = new GeoJSON().readFeatures(json);
+                    vectorSource.addFeatures(features);
+                    map.getView().fit(vectorSource.getExtent());
                 });
         }
     }
