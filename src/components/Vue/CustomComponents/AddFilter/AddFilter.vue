@@ -40,20 +40,9 @@
                 <el-button plain
                            :class="{active:enteredView}"
                            @mouseover.native="handleMouseOver('view')"
-                           @mouseleave.native="handleMouseLeave('view')">
+                           @mouseleave.native="handleMouseLeave('view')"
+                           @click="handleViewFilterList">
                     <i class="el-icon-view"></i>
-
-                    <div class="filter-list">
-                        <li v-for="(item,index) in filterList" :key="index">
-                            <span>
-                                    {{index + 1}}
-                                    {{item.propertyName}}
-                                    {{getLabelByValue(item.querySymbol)}}
-                                    {{item.proValue}}
-                                </span>
-                            <i class="el-icon-delete"></i>
-                        </li>
-                    </div>
                 </el-button>
                 <el-button plain
                            :class="{active:enteredRefresh}"
@@ -62,12 +51,27 @@
                            @click="refreshFilter">
                     <i class="el-icon-refresh"></i>
                 </el-button>
+
+                <el-dialog
+                        :visible.sync="dialogVisible"
+                        :modal="false">
+                    <li v-for="(item,index) in filterList" :key="index">
+                    <span>
+                        {{index + 1}}
+                        {{item.propertyName}}
+                        {{getLabelByValue(item.querySymbol)}}
+                        {{item.proValue}}
+                    </span>
+                    <i class="el-icon-delete" @click="handleDelete(index)"></i>
+                    </li>
+                </el-dialog>
             </el-col>
         </el-row>
     </div>
 </template>
 
 <script>
+    import CustomDialog from '@/components/Vue/CustomComponents/DialogPanel/CustomDialog.vue'
     export default {
         name: "AddFilter",
         props:{
@@ -120,7 +124,9 @@
 
                 enteredAdd:false,
                 enteredView:false,
-                enteredRefresh:false
+                enteredRefresh:false,
+
+                dialogVisible:false
             }
         },
         methods:{
@@ -129,6 +135,7 @@
                     this.operator &&
                     (this.attributeValue || this.attributeValue === 0)
                 ) {
+                    this.validate(this.attributeName,this.operator)
                     this.filterList.push({
                         propertyName: this.attributeName,
                         proValue:this.attributeValue,
@@ -158,6 +165,16 @@
                     this.enteredRefresh = false
                 }
             },
+            handleViewFilterList(){
+                if (this.filterList.length >0){
+                    this.dialogVisible = true
+                }else{
+                    this.$message({
+                        message: '尚未添加任何过滤条件！',
+                        type: 'warning'
+                    });
+                }
+            },
             getLabelByValue(value){
                 let label = ''
                 if (value){
@@ -171,6 +188,73 @@
             },
             refreshFilter(){
                 this.filterList = []
+            },
+            handleDelete(index){
+                this.filterList = this.filterList.filter((item,index_1)=>{
+                    return index_1 != index
+                })
+            },
+            // 校验过滤条件是否违法
+            validate(attributeName,operator){
+                let legal = true
+                if (this.filterList.length > 0){
+                    this.filterList.forEach(item=>{
+                        // propertyName: this.attributeName,
+                        //     proValue:this.attributeValue,
+                        //     querySymbol: this.operator
+
+                        // [
+                        //     {
+                        //         value: 'Greater',
+                        //         label: '大于'
+                        //     },
+                        //     {
+                        //         value: 'GreaterOrEqual',
+                        //         label: '大于 或 等于'
+                        //     },
+                        //     {
+                        //         value: 'Less',
+                        //         label: '小于'
+                        //     },
+                        //     {
+                        //         value: 'LessOrEqual',
+                        //         label: '小于 或 等于'
+                        //     },
+                        //     {
+                        //         value: 'Equal',
+                        //         label: '等于'
+                        //     },
+                        //     {
+                        //         value: 'NotEqual',
+                        //         label: '不等于'
+                        //     },
+                        //     {
+                        //         value: 'Like',
+                        //         label: '包含'
+                        //     }
+                        // ]
+
+                        if (item.propertyName === attributeName ) {
+                           if (
+                               item.querySymbol ===  operator ||
+                               (item.querySymbol === 'Greater' && operator != 'Less' && operator != 'LessOrEqual') ||
+                               (item.querySymbol === 'GreaterOrEqual' && operator != 'Less' && operator != 'LessOrEqual') ||
+                               (item.querySymbol === 'Less' && operator != 'Greater' && operator != 'GreaterOrEqual') ||
+                               (item.querySymbol === 'LessOrEqual' && operator != 'Greater' && operator != 'GreaterOrEqual')
+                           ){
+                               legal = false
+                           }
+                        }
+                    })
+                }
+               return legal
+            }
+        },
+        watch:{
+            'filterList.length'(newValue){
+                if (newValue == 0){
+                    this.dialogVisible = false
+                }
             }
         }
     }
@@ -196,39 +280,56 @@
         .el-button+.el-button{
             margin: 0;
         }
-        .el-col.operation button{
-            position: relative;
-            &::before{
+        .el-col.operation{
+            & button{
+                position: relative;
+                &::before{
+                    position: absolute;
+                    top: -22px;
+                    left: 0px;
+                    display: none;
+                }
+                &.active::before{
+                    display: block;
+                }
+                &:nth-child(1)::before{
+                    content: '添加条件';
+                }
+                &:nth-child(2)::before{
+                    content: '查看条件';
+                }
+                &:nth-child(3)::before{
+                    content: '清空条件';
+                }
+            }
+            .el-dialog__wrapper{
                 position: absolute;
-                top: -22px;
-                left: 0px;
-                display: none;
-            }
-            &.active::before{
-                display: block;
-            }
-            &:nth-child(1)::before{
-                content: '添加条件';
-            }
-            &:nth-child(2)::before{
-                content: '查看条件';
-            }
-            &:nth-child(3)::before{
-                content: '清空条件';
-            }
-
-            .filter-list{
-                background-color: white;
-                position: absolute;
-                top: 40px;
-                right: 0px;
-                li{
-                    text-align: left;
-                    display: flex;
-                    justify-content: space-between;
-                    margin: 8px 12px;
-                    i{
-                        margin-left: 10px;
+                top: 35px;
+                bottom: unset;
+                left: unset;
+                .el-dialog{
+                    margin-top: 0!important;
+                    margin: 0px!important;
+                    width: 100%;
+                    .el-dialog__header{
+                        padding: 0px!important;
+                        .el-dialog__headerbtn{
+                            top: 5px;
+                            right: 5px;
+                            float: right;
+                        }
+                    }
+                    .el-dialog__body{
+                        padding: 25px 0px 10px;
+                        li{
+                            text-align: left;
+                            display: flex;
+                            justify-content: space-between;
+                            margin: 8px 12px;
+                            i{
+                                margin-left: 10px;
+                            }
+                        }
                     }
                 }
             }
