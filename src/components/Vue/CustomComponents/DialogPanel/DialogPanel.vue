@@ -21,7 +21,7 @@
             custom-class="custom-dialog"
             :modal="false"
             :show-close="false"
-            :before-close="handleClose"
+            :before-close="beforeClose"
             width="30%">
         <slot></slot>
     </el-dialog>
@@ -49,7 +49,7 @@
         },
         methods:{
             // 关闭前的一些处理，比如确认提示框
-            handleClose(done){
+            beforeClose(done){
                 // ....要做的处理
 
                 // 别忘了调用done(),不然将不会触发 :visible 绑定值的改变

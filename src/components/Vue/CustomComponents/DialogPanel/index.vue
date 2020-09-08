@@ -13,8 +13,16 @@
         <h1>默认剧中的对话框</h1>
     </dialog-panel>
 
+    <!--<custom-location-->
+            <!--:isShowDialog="isShowCustom" @close="closeCustom">-->
+        <!--<h1>自定义位置的对话框</h1>-->
+    <!--</custom-location>-->
     <custom-location
-            :top=" '100px' " :left="'200px'"
+            :showClose="true"
+            :useCustomPosition="true"
+            :customClass="'custom-dialog-custom-location'"
+            :top=" '100px' "
+            :left="'200px'"
             :isShowDialog="isShowCustom" @close="closeCustom">
         <h1>自定义位置的对话框</h1>
     </custom-location>
@@ -36,11 +44,11 @@ DialogPanel组件：
 
 <script>
     import DialogPanel from './DialogPanel'
-    import CustomLocation from './CustomLocation'
+    import CustomLocation from './CustomDialog'
     export default {
         name: "index",
         components: {
-            DialogPanel: DialogPanel,
+            DialogPanel,
             CustomLocation
         },
         data () {
