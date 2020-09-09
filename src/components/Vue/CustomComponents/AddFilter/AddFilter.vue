@@ -1,8 +1,8 @@
 <template>
-    <div class="add-filter-com-wrapper">
+    <div class="add-filter-com-wrapper" :style="{'width':width+'px'}">
         <el-row>
             <!--字段-->
-            <el-col :span="5">
+            <el-col :span="6">
                 <el-select v-model="attributeName" placeholder="属性名">
                     <el-option
                             v-for="item in attributeNameList"
@@ -13,7 +13,7 @@
                 </el-select>
             </el-col>
             <!--操作符-->
-            <el-col :span="5">
+            <el-col :span="6">
                 <el-select v-model="operator" placeholder="操作符">
                     <el-option
                             v-for="item in operatorList"
@@ -24,11 +24,11 @@
                 </el-select>
             </el-col>
             <!--字段值-->
-            <el-col :span="5">
+            <el-col :span="6">
                 <el-input v-model="attributeValue" placeholder="属性值"></el-input>
             </el-col>
             <!--操作-->
-            <el-col :span="9" class="operation">
+            <el-col :span="6" class="operation">
                 <!--注意：el-button的mouseover和mouseleave不生效的问题：加上.native-->
                 <el-button plain
                            :class="{active:enteredAdd}"
@@ -58,8 +58,8 @@
                     <li v-for="(item,index) in filterList" :key="index">
                     <span>
                         {{index + 1}}
-                        {{item.propertyName}}
-                        {{getLabelByValue(item.querySymbol)}}
+                        {{getLabelByValue(item.propertyName,attributeNameList)}}
+                        {{getLabelByValue(item.querySymbol,operatorList)}}
                         {{item.proValue}}
                     </span>
                     <i class="el-icon-delete" @click="handleDelete(index)"></i>
@@ -82,6 +82,11 @@
                 },
                 required: false
             },
+            width: {
+                type:Number,
+                default:670,
+                required: false
+            }
         },
         data(){
             return{
@@ -135,7 +140,6 @@
                     this.operator &&
                     (this.attributeValue || this.attributeValue === 0)
                 ) {
-                    this.validate(this.attributeName,this.operator)
                     this.filterList.push({
                         propertyName: this.attributeName,
                         proValue:this.attributeValue,
@@ -175,10 +179,10 @@
                     });
                 }
             },
-            getLabelByValue(value){
+            getLabelByValue(value,list){
                 let label = ''
                 if (value){
-                    this.operatorList.forEach(item=>{
+                    list.forEach(item=>{
                         if (item.value === value){
                             label = item.label
                         }
@@ -193,61 +197,6 @@
                 this.filterList = this.filterList.filter((item,index_1)=>{
                     return index_1 != index
                 })
-            },
-            // 校验过滤条件是否违法
-            validate(attributeName,operator){
-                let legal = true
-                if (this.filterList.length > 0){
-                    this.filterList.forEach(item=>{
-                        // propertyName: this.attributeName,
-                        //     proValue:this.attributeValue,
-                        //     querySymbol: this.operator
-
-                        // [
-                        //     {
-                        //         value: 'Greater',
-                        //         label: '大于'
-                        //     },
-                        //     {
-                        //         value: 'GreaterOrEqual',
-                        //         label: '大于 或 等于'
-                        //     },
-                        //     {
-                        //         value: 'Less',
-                        //         label: '小于'
-                        //     },
-                        //     {
-                        //         value: 'LessOrEqual',
-                        //         label: '小于 或 等于'
-                        //     },
-                        //     {
-                        //         value: 'Equal',
-                        //         label: '等于'
-                        //     },
-                        //     {
-                        //         value: 'NotEqual',
-                        //         label: '不等于'
-                        //     },
-                        //     {
-                        //         value: 'Like',
-                        //         label: '包含'
-                        //     }
-                        // ]
-
-                        if (item.propertyName === attributeName ) {
-                           if (
-                               item.querySymbol ===  operator ||
-                               (item.querySymbol === 'Greater' && operator != 'Less' && operator != 'LessOrEqual') ||
-                               (item.querySymbol === 'GreaterOrEqual' && operator != 'Less' && operator != 'LessOrEqual') ||
-                               (item.querySymbol === 'Less' && operator != 'Greater' && operator != 'GreaterOrEqual') ||
-                               (item.querySymbol === 'LessOrEqual' && operator != 'Greater' && operator != 'GreaterOrEqual')
-                           ){
-                               legal = false
-                           }
-                        }
-                    })
-                }
-               return legal
             }
         },
         watch:{
@@ -255,6 +204,7 @@
                 if (newValue == 0){
                     this.dialogVisible = false
                 }
+                this.$emit("add",this.filterList)
             }
         }
     }
@@ -262,7 +212,6 @@
 
 <style lang="scss">
     .add-filter-com-wrapper{
-        width: 600px;
         .el-input__inner{
             height: 30px;
             line-height: 30px;
@@ -281,8 +230,10 @@
             margin: 0;
         }
         .el-col.operation{
+            display: flex;
             & button{
                 position: relative;
+                flex: auto;
                 &::before{
                     position: absolute;
                     top: -22px;

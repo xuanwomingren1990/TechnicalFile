@@ -1,7 +1,9 @@
 <template>
     <div class="add-filter-index">
         <add-filter
-        :attributeNameList="attributeNameList"></add-filter>
+        :attributeNameList="attributeNameList"
+        :width="600"
+        @add="handleAddFilter"></add-filter>
     </div>
 </template>
 
@@ -29,7 +31,14 @@
                 },{
                     value: 'attr5',
                     label: '属性5'
-                }]
+                }],
+
+                filterList:[]
+            }
+        },
+        methods:{
+            handleAddFilter(filterList){
+                this.filterList = filterList
             }
         }
     }
