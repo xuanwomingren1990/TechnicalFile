@@ -2,8 +2,9 @@
     <div class="add-filter-index">
         <add-filter
         :attributeNameList="attributeNameList"
-        :width="600"
-        @add="handleAddFilter"></add-filter>
+        :width="700"
+        @add="handleAddFilter"
+        @search="handleSearch"></add-filter>
     </div>
 </template>
 
@@ -39,6 +40,9 @@
         methods:{
             handleAddFilter(filterList){
                 this.filterList = filterList
+            },
+            handleSearch(){
+                console.log('-------handleSearch--------')
             }
         }
     }

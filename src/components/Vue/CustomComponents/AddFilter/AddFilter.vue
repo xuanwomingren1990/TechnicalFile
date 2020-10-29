@@ -51,18 +51,24 @@
                            @click="refreshFilter">
                     <i class="el-icon-refresh"></i>
                 </el-button>
-
+                <el-button plain
+                           :class="{active:enteredFilter}"
+                           @mouseover.native="handleMouseOver('filter')"
+                           @mouseleave.native="handleMouseLeave('filter')"
+                           @click="handleFilter">
+                    <i class="el-icon-search"></i>
+                </el-button>
                 <el-dialog
                         :visible.sync="dialogVisible"
                         :modal="false">
                     <li v-for="(item,index) in filterList" :key="index">
-                    <span>
-                        {{index + 1}}
-                        {{getLabelByValue(item.propertyName,attributeNameList)}}
-                        {{getLabelByValue(item.querySymbol,operatorList)}}
-                        {{item.proValue}}
-                    </span>
-                    <i class="el-icon-delete" @click="handleDelete(index)"></i>
+                        <span>
+                            {{index + 1}}
+                            {{getLabelByValue(item.propertyName,attributeNameList)}}
+                            {{getLabelByValue(item.querySymbol,operatorList)}}
+                            {{item.proValue}}
+                        </span>
+                        <i class="el-icon-delete" @click="handleDelete(index)"></i>
                     </li>
                 </el-dialog>
             </el-col>
@@ -71,7 +77,6 @@
 </template>
 
 <script>
-    import CustomDialog from '@/components/Vue/CustomComponents/DialogPanel/CustomDialog.vue'
     export default {
         name: "AddFilter",
         props:{
@@ -130,6 +135,7 @@
                 enteredAdd:false,
                 enteredView:false,
                 enteredRefresh:false,
+                enteredFilter:false,
 
                 dialogVisible:false
             }
@@ -151,6 +157,9 @@
                 this.operator=''
                 this.attributeValue=''
             },
+            handleFilter(){
+                this.$emit('search')
+            },
             handleMouseOver(type){
                 if (type === 'add'){
                     this.enteredAdd = true
@@ -158,6 +167,8 @@
                     this.enteredView = true
                 }else if (type === 'refresh'){
                     this.enteredRefresh = true
+                }else if (type === 'filter'){
+                    this.enteredFilter = true
                 }
             },
             handleMouseLeave(type){
@@ -167,6 +178,8 @@
                     this.enteredView = false
                 }else if (type === 'refresh'){
                     this.enteredRefresh = false
+                }else if (type === 'filter'){
+                    this.enteredFilter = false
                 }
             },
             handleViewFilterList(){
@@ -252,12 +265,17 @@
                 &:nth-child(3)::before{
                     content: '清空条件';
                 }
+                &:nth-child(4)::before{
+                    content: '查询';
+                }
             }
             .el-dialog__wrapper{
                 position: absolute;
                 top: 35px;
                 bottom: unset;
                 left: unset;
+                border: 1px solid #DCDFE6;
+                border-radius: 5px;
                 .el-dialog{
                     margin-top: 0!important;
                     margin: 0px!important;

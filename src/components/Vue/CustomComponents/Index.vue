@@ -2,7 +2,7 @@
     <div class="custom-components-container">
         <div class="buttons" style="display: flex;justify-content: center">
             <el-row>
-                <el-button type="primary" size="small" v-on:click="switchTo('dialogPanelIndex')">仔队自定义弹框</el-button>
+                <el-button type="primary" size="small" v-on:click="switchTo('dialogPanelIndex')">自定义弹框</el-button>
             </el-row>
             <el-row>
                 <el-button type="primary" size="small" v-on:click="switchTo('AbsolutePanelIndex')">决定定位盒子</el-button>
