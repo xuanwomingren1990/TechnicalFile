@@ -62,7 +62,7 @@ OpenLayer的默认瓦片坐标系的原点在左上角，从左到右为x轴正�
                                 // var x = tileCoord[1]
                                 // var y = tileCoord[2]
 
-                                // debugger
+
                                 var x = tileCoord[1] ;
                                 var y = -tileCoord[2] -1;
                                 var z = tileCoord[0];

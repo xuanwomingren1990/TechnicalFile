@@ -12,9 +12,9 @@ import ViewMinMaxZoom from '@/components/Openlayers/view/ViewMinMaxZoom.vue'
 import ViewFitExtent from '@/components/Openlayers/view/ViewFitExtent.vue'
 import TileSourceOnline from '@/components/Openlayers/Source_Layer/Source-Tile/TileSourceOnline.vue'
 import TileSourceXYZ from '@/components/Openlayers/Source_Layer/Source-Tile/TileSourceXYZ.vue'
-import TileSourceXYZ_Baidu_Formal from '@/components/Openlayers/Source_Layer/Source-Tile/TileSourceXYZ_Baidu_Formal.vue'
-import TileSourceXYZ_Baidu_Test from '@/components/Openlayers/Source_Layer/Source-Tile/TileSourceXYZ_Baidu_Test.vue'
-import TileSourceXYZ_Baidu_1 from '@/components/Openlayers/Source_Layer/Source-Tile/TileSourceXYZ_Baidu_1.vue'
+import TileSourceXYZ_Baidu2_Formal from '@/components/Openlayers/Source_Layer/Source-Tile/TileSourceXYZ_Baidu2_Formal.vue'
+import TileSourceXYZ_Baidu1_Test from '@/components/Openlayers/Source_Layer/Source-Tile/TileSourceXYZ_Baidu1_Test.vue'
+import TileSourceXYZ_Baidu3 from '@/components/Openlayers/Source_Layer/Source-Tile/TileSourceXYZ_Baidu3.vue'
 import WMS from '@/components/Openlayers/Source_Layer/WMS-Source/WMS.vue'
 import DiffusedCircle from '@/components/Openlayers/OverLay/DiffusedCircle.vue'
 import WFS from '@/components/Openlayers/GeoserverResource/WFS.vue'
@@ -95,17 +95,17 @@ const routes = [
     {
         path: '/TileSourceXYZ/Baidu/Test',
         name: 'TileSourceXYZ_Baidu_Test',
-        component: TileSourceXYZ_Baidu_Test
+        component: TileSourceXYZ_Baidu1_Test
     },
     {
         path: '/TileSourceXYZ/Baidu/Formal',
         name: 'TileSourceXYZ_Baidu_Formal',
-        component: TileSourceXYZ_Baidu_Formal
+        component: TileSourceXYZ_Baidu2_Formal
     },
     {
         path: '/TileSourceXYZ_Baidu_1',
         name: 'TileSourceXYZ_Baidu_1',
-        component: TileSourceXYZ_Baidu_1
+        component: TileSourceXYZ_Baidu3
     },
     {
         path: '/WMS',

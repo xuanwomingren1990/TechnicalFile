@@ -23,7 +23,6 @@
          * 即：当切换到本组件的时候，会先执行activated钩子，会在两秒后显示本组件，起到了延迟加载的作用。
          */
         activated: function () {
-            debugger
             console.log('activated')
             var self = this;
 

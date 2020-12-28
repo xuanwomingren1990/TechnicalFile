@@ -44,9 +44,7 @@
             // Open Street Map 地图层
             this.openStreetMapLayer = new TileLayer({
                 source: new XYZ({
-                    url:'http://{a-c}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-                    tileUrlFunction: function (tileCoord) {
-                    }
+                    url:'http://{a-c}.tile.openstreetmap.org/{z}/{x}/{y}.png'
                 })
             });
 
@@ -60,7 +58,7 @@
             // Yahoo地图层
             this.YahooMapLayer = new TileLayer({
                 source: new XYZ({
-                    // 默认情况下，tileSize为256，这也是现在绝大多数瓦片采用的大小。但Yahoo地图使用的是512，
+                    // todo:默认情况下，tileSize为256，这也是现在绝大多数瓦片采用的大小。但Yahoo地图使用的是512，
                     tileSize: 512,
                     url:'https://{0-3}.base.maps.api.here.com/maptile/2.1/maptile/newest/normal.day/{z}/{x}/{y}/512/png8?lg=ENG&ppi=250&token=TrLJuXVK62IQk0vuXFzaig%3D%3D&requestid=yahoo.prod&app_id=eAdkWGYRoc4RfxVo0Z4B'
                 })
@@ -74,7 +72,7 @@
 
                 view: new View({
                     projection: "EPSG:4326",
-                    center: [114.064839,22.548857],
+                    center: [0,0],
                     zoom: 1
                 })
             });
