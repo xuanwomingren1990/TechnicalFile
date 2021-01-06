@@ -6,8 +6,10 @@
         <!--调用方式:this.$setAnimation()-->
         <div class="instance-method">实例方法：setAnimation</div>
 
-        <!--组件hide属性为ture,该指令将生效-->
-        <div class="global-directive" v-hide>全局指令：v-hide</div>
+        <!--组件props中的hideProp属性为ture,将移除元素-->
+        <div class="global-directive" v-hideProp>全局指令：v-hideProp</div>
+        <!--组件props中的hideData属性为ture,将移除元素-->
+        <div class="global-directive" v-hideData>全局指令：v-hideData</div>
     </div>
 </template>
 
@@ -16,18 +18,32 @@
     export default {
         name: "index",
         props: {
-            hide: {
+            hideProp: {
                 type:Boolean,
                 default: false
             }
         },
+        data(){
+            return{
+                hideData:false
+            }
+        },
         mounted(){
+            // // Vue构造器调用全局方法
+            // Vue.setAnimation('global-method','flash',null,function (dom) {
+            //     console.log(dom)
+            // })
+            // // 在vue实例中调用实例方法
+            // this.$setAnimation('instance-method','flash',null,function (dom) {
+            //     console.log(dom)
+            // })
+
             // Vue构造器调用全局方法
-            Vue.setAnimation('global-method','flash',null,function (dom) {
+            Vue.registerAnimation('global-method','flash',null,function (dom) {
                 console.log(dom)
             })
             // 在vue实例中调用实例方法
-            this.$setAnimation('instance-method','flash',null,function (dom) {
+            this.$registerAnimation('instance-method','flash',null,function (dom) {
                 console.log(dom)
             })
         }
@@ -46,6 +62,7 @@
             padding: 5px;
             cursor: pointer;
             margin-right: 20px;
+            margin-bottom: 10px;
         }
     }
 </style>

@@ -25,6 +25,7 @@ import SlotIndex from '@/components/Vue/Slot/Index.vue'//插槽
 import WatchIndex from '@/components/Vue/WatchProperty/index.vue'//监听器
 import CustomComponentIndex from '@/components/Vue/CustomComponents/Index.vue'// vue自定义组件的使用
 import CustomPluginsIndex from '@/components/Vue/Plugins/index.vue'//插件的使用
+import ExternalComponentIndex from '@/components/Vue/ExternalComponent/Test.vue'//插件的使用
 
 /****************************************CSS、SASS******************************************/
 import CssIndex from '@/components/Vue/CSS/Index.vue'//插件的使用
@@ -147,6 +148,11 @@ const routes = [
         path: '/vue/Plugins',
         name: 'CustomPluginsIndex',
         component: CustomPluginsIndex
+    },
+    {
+        path: '/vue/ExternalComponent',
+        name: 'ExternalComponentIndex',
+        component: ExternalComponentIndex
     },
     /************CSS、SCASS相关路由************/
     {

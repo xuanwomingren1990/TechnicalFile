@@ -12,8 +12,6 @@
 </template>
 
 <script>
-    // js中使用scss中的变量
-    import colors from '@/styles/resource-variables.scss'
     export default {
         name: "ScssColorFunction",
         data(){
@@ -29,10 +27,6 @@
                 ]
             }
         },
-        created(){
-            console.log(colors.waterColor1)
-            console.log(colors.waterColor2)
-        }
     }
 
     let variables =  {
@@ -47,6 +41,7 @@
 </script>
 
 <style lang="scss" scoped>
+    /*定义颜色变量*/
     $legend-water: #4dadf7;
     $legend-power: #FFA800;
     $legend-gas: #8f9cff;
@@ -56,6 +51,8 @@
     $legend-building: #8d8d8d;
 
 
+    /*定义颜色函数*/
+    /*可以给参数设定默认值，比如：$level1的默认值为30%*/
     @mixin serColor(
         $type,
         $baseColor,
@@ -94,6 +91,7 @@
                 height: 30px;
             }
         }
+        /*调用颜色函数，传入参数：$type、$baseColor*/
         @include serColor($type:'water',$baseColor:$legend-water);
         @include serColor($type:'power',$baseColor:$legend-power);
         @include serColor($type:'gas',$baseColor:$legend-gas);

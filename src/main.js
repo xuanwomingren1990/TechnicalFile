@@ -2,24 +2,48 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+
+/**
+ * 引入elementUI
+ */
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
-import 'animate.css'
-import echarts from 'echarts'//引入echarts
-
-// 自定义全局js样式变量
-// import styleVariables from '@/styles/styleVariables.js'
-let styleVariables = require('@/styles/styleVariables.js')
-
-// import module1 from '@/components/Vue/CSS/module1.js'
-// console.log(module1)
-Vue.prototype.$styleVariables = styleVariables
-
-import myPlugin from '@/components/Vue/Plugins/index.js'
-Vue.use(myPlugin)
-
 Vue.use(ElementUI)
 
+/**
+ * 自定义全局js样式变量
+ */
+// let styleVariables = require('@/styles/styleVariables.js')
+// Vue.prototype.$styleVariables = styleVariables
+
+/**
+ * 使用自定义插件
+ */
+import 'animate.css'//动画插件配套的css样式
+// 1.整体引入
+import plugins from '@/components/Vue/Plugins/index.js'
+Vue.use(plugins)
+// 2.按需引入
+// import {registerAnimation,hide,styleVariables} from '@/components/Vue/Plugins/index.js'
+// Vue.use(registerAnimation)
+// Vue.use(hide)
+// Vue.use(styleVariables)
+
+/**
+ * 使用自定义发布到npm上的插件
+ */
+// 1.全局引入
+import modeTest from 'mode-test1990'
+// Vue.use(modeTest)
+// 2.按需引入
+import {component1,component2} from 'mode-test1990'
+Vue.use(component1)
+Vue.use(component2)
+
+/**
+ * 引入echarts
+ */
+import echarts from 'echarts'//引入echarts
 Vue.prototype.$echarts = echarts
 
 
