@@ -1,10 +1,10 @@
 <template>
     <div class="demos-plugin-container">
-        <!--调用方式:Vue.setAnimation()-->
-        <div class="global-method">全局方法：setAnimation</div>
+        <!--调用方式:Vue.registerAnimation()-->
+        <div class="global-method">全局方法：registerAnimation</div>
 
-        <!--调用方式:this.$setAnimation()-->
-        <div class="instance-method">实例方法：setAnimation</div>
+        <!--调用方式:this.$registerAnimation()-->
+        <div class="instance-method">实例方法：registerAnimation</div>
 
         <!--组件props中的hideProp属性为ture,将移除元素-->
         <div class="global-directive" v-hideProp>全局指令：v-hideProp</div>
@@ -29,15 +29,6 @@
             }
         },
         mounted(){
-            // // Vue构造器调用全局方法
-            // Vue.setAnimation('global-method','flash',null,function (dom) {
-            //     console.log(dom)
-            // })
-            // // 在vue实例中调用实例方法
-            // this.$setAnimation('instance-method','flash',null,function (dom) {
-            //     console.log(dom)
-            // })
-
             // Vue构造器调用全局方法
             Vue.registerAnimation('global-method','flash',null,function (dom) {
                 console.log(dom)

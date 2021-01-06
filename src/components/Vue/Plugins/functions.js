@@ -32,9 +32,9 @@ const registerAnimation = {
             }
         }
 
-        // 添加全局方法，调用方式：Vue.setAnimation()
+        // 添加全局方法，调用方式：Vue.registerAnimation()
         Vue.registerAnimation = animateFunction
-        // 添加实例方法，调用方式：this.$setAnimation()
+        // 添加实例方法，调用方式：this.$registerAnimation()
         Vue.prototype.$registerAnimation = animateFunction
     }
 }

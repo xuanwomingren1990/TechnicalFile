@@ -11,23 +11,17 @@ import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI)
 
 /**
- * 自定义全局js样式变量
- */
-// let styleVariables = require('@/styles/styleVariables.js')
-// Vue.prototype.$styleVariables = styleVariables
-
-/**
  * 使用自定义插件
  */
 import 'animate.css'//动画插件配套的css样式
 // 1.整体引入
-import plugins from '@/components/Vue/Plugins/index.js'
-Vue.use(plugins)
+// import plugins from '@/components/Vue/Plugins/index.js'
+// Vue.use(plugins)
 // 2.按需引入
-// import {registerAnimation,hide,styleVariables} from '@/components/Vue/Plugins/index.js'
-// Vue.use(registerAnimation)
-// Vue.use(hide)
-// Vue.use(styleVariables)
+import {registerAnimation,hide,styleVariables} from '@/components/Vue/Plugins/index.js'
+Vue.use(registerAnimation)
+Vue.use(hide)
+Vue.use(styleVariables)
 
 /**
  * 使用自定义发布到npm上的插件

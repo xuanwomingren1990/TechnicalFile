@@ -9,19 +9,19 @@
 ```
 const plugin = {
     install (Vue,options){
-        1、注册全局对象、方法
-        Vue.setAnimation = setAnimation 
-        
-        2、注册实例对象、方法
-        Vue.prototype.$setAnimation = setAnimation 
+        1、注册全局变量|方法
+        Vue.name = 方法|变量
+
+        2、注册实例变量|方法
+        Vue.prototype.$name = 方法|变量
 
         3、注册全局指令
         Vue.directive(指令名称, {
             inserted: (el, binding, vnode) => {
-               
+
             }
         })
-        
+
         4、注册全局组件
         Vue.component(component.name,component)
     }
