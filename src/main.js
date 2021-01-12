@@ -27,12 +27,12 @@ Vue.use(styleVariables)
  * 使用自定义发布到npm上的插件
  */
 // 1.全局引入
-import modeTest from 'mode-test1990'
-// Vue.use(modeTest)
+// import packageHong from 'package-hong'
+// Vue.use(packageHong)
 // 2.按需引入
-import {component1,component2} from 'mode-test1990'
-Vue.use(component1)
-Vue.use(component2)
+import {package1} from 'package-hong'
+Vue.use(package1)
+// Vue.use(component2)
 
 /**
  * 引入echarts

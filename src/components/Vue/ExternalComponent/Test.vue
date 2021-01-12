@@ -1,7 +1,6 @@
 <template>
     <div>
-        <component1></component1>
-        <component2></component2>
+      <package1></package1>
     </div>
 </template>
 
