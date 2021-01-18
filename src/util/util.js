@@ -120,7 +120,6 @@ export const BL2XY = (B,L)=>{ // eslint-disable-line no-unused-vars
     }
 }
 
-
 export const XY2BL = (xx,yy)=>{ // eslint-disable-line no-unused-vars
     var x = yy
     var y = xx - 500000
@@ -129,32 +128,23 @@ export const XY2BL = (xx,yy)=>{ // eslint-disable-line no-unused-vars
     const f = 1 / 298.257222101   //扁率
     const b = a - a * f       //短轴。公式:f= (a-b)/a
     const e = Math.sqrt(a*a - b*b) / a //第一偏心率
-    const eʹ = Math.sqrt(a*a - b*b) / b // 第二偏心率
 
 
-    const m0 = a * (1 - e * e)
-    const m2 = (3 / 2) * e * e * m0
-    const m4 = (5 / 4) * e * e * m2
-    const m6 = (7 / 6) * e * e * m4
-    const m8 = (9 / 8) * e * e * m6
+    const e2 = Math.pow(e,2)
+    const e4 = Math.pow(e,4)
+    const e6 = Math.pow(e,6)
+    const e8 = Math.pow(e,8)
+    const A1 = a * (1 - e2) * (1 + 3/4 * e2 + 45/64 * e4 + 175/256 * e6 + 11025/16384 * e8)
+    const A2 = a * (1 - e2) * (3/4 * e2 + 15/16 * e4 + 525/512 * e6 + 2205/2048 * e8)
+    const A3 = a * (1 - e2) * (15/64 * e4 + 105/256 * e6 + 2205/4096 * e8)
+    const A4 = a * (1 - e2) * (35/512 * e6 + 315/2048 * e8)
 
-    const n0 =  a
-    const n2 = (1 / 2) * e * e * n0
-    const n4 = (3 / 4) * e * e * n2
-    const n6 = (5 / 6) * e * e * n4
-    const n8 = (7 / 8) * e * e * n6 // eslint-disable-line no-unused-vars
 
-    const a0 = m0 + (1/2) * m2 + (3/8) * m4 + (5/16) * m6 + (35/128) * m8
-    const a2 = (1/2) * m2 + (1/2) * m4 + (15/32) * m6 + (7/16) * m8
-    const a4 = (1/8) * m4 + (3/16) * m6 + (7/32) * m8
-    const a6 = (1/32) * m6 + (1/16) * m8
-    const a8 = (1/128) * m8
-
-    var B0 = x / a0
+    var B0 = (x / A1) / 180 * Math.PI
     const getB0 = ()=> {
-        var B1 = (x + a2 * (1/2) * Math.sin(2 * B0) - a4 * (1/4)  * Math.sin(4 * B0) + a6 * (1/6)  * Math.sin(6 * B0) - a8 * (1/8)  * Math.sin(8 * B0)) / a0
+        var B1 = (x + A2/2 * Math.sin(2 * B0) - A3/4 * Math.sin(4 * B0) + A4/6 * Math.sin(6 * B0)) / A1
 
-        if ((B1 - B0) < 2.78 * Math.pow(10,-9)){
+        if ((B1 - B0) < 2.78 * Math.pow(10,-9) / 180 * Math.PI){
             B0 = B1
             return
         }else {
@@ -164,23 +154,22 @@ export const XY2BL = (xx,yy)=>{ // eslint-disable-line no-unused-vars
     }
     getB0()
 
-    var sinB0 = Math.sin(B0)
+    var N = a / Math.sqrt(1 - Math.pow(e,2) * Math.pow(Math.sin(B0),2))
+    var ŋ2 = Math.pow(e * Math.cos(B0),2) / (1 - Math.pow(e,2))
+    var Y = y / N
     var t = Math.tan(B0)
-    var ŋ2 = eʹ * Math.pow(Math.cos(B0),2)
-    var V = Math.sqrt(1 + Math.pow(eʹ,2) * Math.pow(Math.cos(B0),2))
-    var N = n0 + n2 * Math.pow(sinB0,2) + n4 * Math.pow(sinB0,4) + n6 * Math.pow(sinB0,6) + n8 * Math.pow(sinB0,8)
 
-    var B = B0 - (1 / 2) * Math.pow(V,2) * t * [
-        Math.pow((y / N),2) -
-        (1/12) * (5 + 3 * Math.pow(t,2) + ŋ2 - 9 * ŋ2 * Math.pow(t,2)) * Math.pow((y / N),4) +
-        (1/360) * (61 + 90 * Math.pow(t,2) + 45 * Math.pow(t,4)) * Math.pow((y/N),6)
+    var B = B0 - 1/2  * (1 + ŋ2) * t * [
+        Math.pow(Y,2) -
+        (1 / 12) * Math.pow(Y,4) * (5 + 3 * Math.pow(t,2) + ŋ2 + 9 * ŋ2 * Math.pow(t,2)) +
+        (1 / 360) * Math.pow(Y,6) * (61 + 90 * Math.pow(t,2) + 45 * Math.pow(t,4))
     ]
 
-    var l = (1 / Math.cos(B0)) * [
-        (y / N) -
-        (1 / 6) * (1 + 2 * Math.pow(t,2) + ŋ2) * Math.pow((y/N),3) +
-        (1 / 120) * (5 + 28 * Math.pow(t,2) + 24 * Math.pow(t,4) + 6 * ŋ2 + 8 * ŋ2 * Math.pow(t,2)) * Math.pow((y/N),5)
-    ]
+    var l = (
+        Y -
+        (1 / 6) * Math.pow(Y,3) * (1 + 2 * Math.pow(t,2) + ŋ2)+
+        (1 / 120) * Math.pow(Y,5) * (5 + 28 * Math.pow(t,2) + 24 * Math.pow(t,4) + 6 * ŋ2 + 8 * ŋ2 * Math.pow(t,2))
+    ) / Math.cos(B0)
 
 
 
@@ -190,6 +179,9 @@ export const XY2BL = (xx,yy)=>{ // eslint-disable-line no-unused-vars
     }
 
 }
+
+
+
 
 /**
  * 弧度转度分秒
