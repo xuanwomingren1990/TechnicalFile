@@ -7,9 +7,6 @@
             <el-row>
                 <el-button type="primary" size="small" v-on:click="switchTo('AbsolutePanelIndex')">决定定位盒子</el-button>
             </el-row>
-            <el-row>
-                <el-button type="primary" size="small" v-on:click="switchTo('AddFilterIndex')">添加过滤条件</el-button>
-            </el-row>
         </div>
 
         <!--在本组件中，利用动态组件，切换组件-->
@@ -20,13 +17,11 @@
 <script>
     import DialogPanelIndex from './DialogPanel/index'
     import AbsolutePanelIndex from './AbsolutePanel/index'
-    import AddFilterIndex from './AddFilter/Index.vue'
     export default {
         name: "Index",
         components: {
             DialogPanelIndex,
-            AbsolutePanelIndex,
-            AddFilterIndex
+            AbsolutePanelIndex
         },
         data () {
             return {

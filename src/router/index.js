@@ -22,7 +22,6 @@ import WFS from '@/components/Openlayers/GeoserverResource/WFS.vue'
 /**********************************vue 案例*****************************************/
 import ArchiveComponent from '@/components/Vue/ArchiveComponent/index.vue'//动态组件
 import SlotIndex from '@/components/Vue/Slot/Index.vue'//插槽
-import WatchIndex from '@/components/Vue/WatchProperty/index.vue'//监听器
 import CustomComponentIndex from '@/components/Vue/CustomComponents/Index.vue'// vue自定义组件的使用
 import CustomPluginsIndex from '@/components/Vue/Plugins/index.vue'//插件的使用
 import ExternalComponentIndex from '@/components/Vue/ExternalComponent/Test.vue'//插件的使用
@@ -133,11 +132,6 @@ const routes = [
         path: '/vue/SlotIndex',
         name: 'SlotIndex',
         component: SlotIndex
-    },
-    {
-        path: '/vue/WatchIndex',
-        name: 'WatchIndex',
-        component: WatchIndex
     },
     {
         path: '/vue/Components',

@@ -27,7 +27,9 @@
                 default: true,
                 required: false
             },
-            /**类名要唯一*/
+            /**
+             * 类名要唯一
+             */
             customClass:{
                 type: String,
                 default: "custom-dialog",
