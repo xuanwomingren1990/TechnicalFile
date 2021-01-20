@@ -24,13 +24,15 @@ import ArchiveComponent from '@/components/Vue/ArchiveComponent/index.vue'//动�
 import SlotIndex from '@/components/Vue/Slot/Index.vue'//插槽
 import CustomComponentIndex from '@/components/Vue/CustomComponents/Index.vue'// vue自定义组件的使用
 import CustomPluginsIndex from '@/components/Vue/Plugins/index.vue'//插件的使用
-import ExternalComponentIndex from '@/components/Vue/ExternalComponent/Test.vue'//插件的使用
 
 /****************************************CSS、SASS******************************************/
 import CssIndex from '@/components/Vue/CSS/Index.vue'//插件的使用
 
 /****************************************EChart******************************************/
 import echartK from '@/components/EChart/chart_K/echart-k.vue'//插件的使用
+
+/*******************************************测试*********************************************/
+import Test from '@/components/ModuleTest/index.vue'//插件的使用
 
 
 
@@ -144,9 +146,9 @@ const routes = [
         component: CustomPluginsIndex
     },
     {
-        path: '/vue/ExternalComponent',
-        name: 'ExternalComponentIndex',
-        component: ExternalComponentIndex
+        path: '/ModuleTest/Test',
+        name: 'Test',
+        component: Test
     },
     /************CSS、SCASS相关路由************/
     {

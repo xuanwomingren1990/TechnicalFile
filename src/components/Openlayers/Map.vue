@@ -1,20 +1,8 @@
 <template>
     <div id="map" ref="rootmap">
-<!-------------------笔记------------------>
-<div class="notes hidden">
-<pre>
-    OpenLayers学习文档：http://linwei.xyz/ol3-primer/ch12/12-01.html
-    OpenLayers学习文档：http://linwei.xyz/ol3-primer/ch12/12-01.html
-
-    在openlayers中，一副地图就是一个 ol.Map对象，它的基本构成为：
-    map就是一个摄影系统:
-    1.图层(layer)就是拍摄得到的照片，每一张照片都是通过拍摄素材(source)得到；
-    2.视图(view)就是相机的镜头，控制镜头就能拍摄到不同的照片；
-    3.target就是相框
-    <!--&lt;div&gt;&lt;/div&gt;-->
-</pre>
-</div>
-<!-------------------笔记---------------->
+      <MarkDownContainer>
+        <MarkDownFile></MarkDownFile>
+      </MarkDownContainer>
     </div>
 </template>
 
@@ -27,8 +15,13 @@
     import { Map, View } from "ol";
     import TileLayer from "ol/layer/Tile";
     import OSM from "ol/source/OSM";
+
+    import MarkDownFile from './Map.md'
     export default {
         name: "Map",
+      components: {
+        MarkDownFile
+      },
         data () {
             return {
                 /**

@@ -1,4 +1,4 @@
-### 1. 开发插件的方法
+### 开发插件
 
 `vue.js` 的插件因该暴露一个 `install` 方法。
 
@@ -30,29 +30,3 @@ const plugin = {
 export plugin
 
 ```
-### 2. 插件列表
-#### 2.1 组件
-- 在 `main.js` 中注册公共组件 `MarkDownContainer`
-```javascript
-import {MarkDownContainer} from '@/components/Vue/Plugins/index.js'
-Vue.use(MarkDownContainer)
-```
-
-- 在组件页面中引入 `.md` 文档作为组件 `MarkDownFile`，嵌套在 `MarkDownContainer`组件中
-```angular2html
-<template>
-    <MarkDownContainer>
-      <MarkDownFile></MarkDownFile>
-    </MarkDownContainer>
-</template>
-```
-```javascript
-import MarkDownFile from './README.md'
-export default {
-  components: {
-    MarkDownFile
-  }
-}
-```
-
-

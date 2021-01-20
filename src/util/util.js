@@ -2,7 +2,12 @@
  * 对象深拷贝
  */
 // import {parse} from "ol/xml";
-
+/*-----------------------深度克隆------------------------*/
+/**
+ * 深度克隆
+ * @param data
+ * @returns {{}|*}
+ */
 export const deepClone = data => {
     var type = getObjType(data);
     var obj;
@@ -45,6 +50,7 @@ export const getObjType = obj => {
     return map[toString.call(obj)];
 };
 
+/*------------------------坐标正反算-----------------------*/
 
 /**
  * WKID:4547投影坐标系正算公式
@@ -214,7 +220,6 @@ export const XY2BL = (xx,yy)=>{
 
 }
 
-
 /**
  * 弧度转度分秒
  * @param rad
@@ -243,5 +248,6 @@ function R2DMS (rad){
         S:S
     }
 }
+
 
 

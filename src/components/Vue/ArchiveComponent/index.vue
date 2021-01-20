@@ -1,11 +1,11 @@
 <template>
-<div class="container">
+  <div class="container">
     <div class="buttons">
-        <!--在父组件中切换动态组件-->
-        <el-row>
-            <el-button type="primary" size="small" v-on:click="switchTo('TabComponent_A')">组件A</el-button>
-            <el-button type="primary" size="small" v-on:click="switchTo('TabComponent_B')">组件B</el-button>
-        </el-row>
+      <!--在父组件中切换动态组件-->
+      <el-row>
+        <el-button type="primary" size="small" v-on:click="switchTo('TabComponent_A')">组件A</el-button>
+        <el-button type="primary" size="small" v-on:click="switchTo('TabComponent_B')">组件B</el-button>
+      </el-row>
     </div>
     <!--动态组件-->
     <!--1.组件会在 `currentTabComponent` 改变时切换-->
@@ -16,60 +16,53 @@
     <!--1.切换掉的组件实例将保留在内存中，当切换回来的时候，不会重新创建；从而可以保留它的状态或避免重新渲染-->
     <!--2.配合被切换组件的 'activated' 钩子，可一实现起 组件延迟加载的作用-->
     <keep-alive>
-        <component v-bind:is="currentTabComponent" v-on:checkout="checkout"></component>
+      <component v-bind:is="currentTabComponent" v-on:checkout="checkout"></component>
     </keep-alive>
 
+    <!--  查看文档-->
+    <MarkDownContainer>
+      <MarkDownFile></MarkDownFile>
+    </MarkDownContainer>
 
-<!-------------------笔记------------------>
-<div class="notes hidden">
-<pre>
-    动态组件的应用场景：
-    1.根据属性值，动态切换组件；
-      例如：点击按钮，将会改变vue实例上的currentTabComponent属性值，而vue将动态根据该值来渲染相应的组件；
-    2.保存被切换组件的状态；
-      例如：之前点击了A组件的第三个tab,当再次展示本A组件时,还是保持点击A第三个tab的状态。
-    3.组件切换时，延迟显示组件；
-      例如：点击B按钮时，B组件将延迟1秒显示
-    <!--&lt;div&gt;&lt;/div&gt;-->
-</pre>
-</div>
-<!-------------------笔记---------------->
-
-
-</div>
+  </div>
 </template>
 
 <script>
-    import TabComponent_A from './TabComponentA'
-    import TabComponent_B from './TabComponentB'
-    export default {
-        name: "index",
-        // 注册组件
-        components: {
-            TabComponent_A: TabComponent_A,
-            TabComponent_B: TabComponent_B
-        },
-        data (){
-            return {
-                currentTabComponent: 'TabComponent_A'
-            }
-        },
-        methods: {
-            switchTo(value){
-                this.currentTabComponent = value
-            },
-            checkout(val){
-                this.switchTo(val)
-            }
-        }
+import MarkDownFile from './README.md'
+
+import TabComponent_A from './TabComponentA'
+import TabComponent_B from './TabComponentB'
+
+export default {
+  name: "index",
+  // 注册组件
+  components: {
+    TabComponent_A: TabComponent_A,
+    TabComponent_B: TabComponent_B,
+
+    MarkDownFile
+  },
+  data() {
+    return {
+      currentTabComponent: 'TabComponent_A'
     }
+  },
+  methods: {
+    switchTo(value) {
+      this.currentTabComponent = value
+    },
+    checkout(val) {
+      this.switchTo(val)
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>
-    .container{
-        .buttons{
-            display: flex;
-            justify-content: center;
-        }
-    }
+.container {
+  .buttons {
+    display: flex;
+    justify-content: center;
+  }
+}
 </style>

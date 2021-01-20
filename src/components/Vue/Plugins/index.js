@@ -2,12 +2,18 @@
 import {registerAnimation} from './functions'
 import {hide} from './directives'
 import {styleVariables} from "./variables";
+import {MarkDownContainer} from './components'
 
 // 以数组的结构保存组件，便于遍历
 const plugins = [
+    /*--------方法--------*/
     registerAnimation,
+    /*------ -指令---------*/
     hide,
-    styleVariables
+    /*------- 变量---------*/
+    styleVariables,
+    /*--------组件--------*/
+    MarkDownContainer
 ]
 
 // 定义 install 方法
@@ -31,4 +37,13 @@ export default {
 /**
  * 便于按需引入插件
  */
-export {registerAnimation,hide,styleVariables}
+export {
+    /*--------方法--------*/
+    registerAnimation,
+    /*------ -指令---------*/
+    hide,
+    /*------- 变量---------*/
+    styleVariables,
+    /*--------组件--------*/
+    MarkDownContainer
+}

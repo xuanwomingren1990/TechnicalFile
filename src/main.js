@@ -18,10 +18,12 @@ import 'animate.css'//动画插件配套的css样式
 // import plugins from '@/components/Vue/Plugins/index.js'
 // Vue.use(plugins)
 // 2.按需引入
-import {registerAnimation,hide,styleVariables} from '@/components/Vue/Plugins/index.js'
+import {registerAnimation,hide,styleVariables,MarkDownContainer} from '@/components/Vue/Plugins/index.js'
 Vue.use(registerAnimation)
 Vue.use(hide)
 Vue.use(styleVariables)
+Vue.use(MarkDownContainer)
+
 
 /**
  * 使用自定义发布到npm上的插件
@@ -33,6 +35,7 @@ Vue.use(styleVariables)
 import {package1} from 'package-hong'
 Vue.use(package1)
 // Vue.use(component2)
+
 
 /**
  * 引入echarts
