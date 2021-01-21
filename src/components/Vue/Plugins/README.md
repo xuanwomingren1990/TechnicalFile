@@ -1,4 +1,4 @@
-### 1. 开发插件的方法
+## 1. 开发插件的方法
 
 `vue.js` 的插件因该暴露一个 `install` 方法。
 
@@ -30,8 +30,9 @@ const plugin = {
 export plugin
 
 ```
-### 2. 插件列表
-#### 2.1 组件
+## 2. 插件列表
+### 2.1 组件
+#### MarkDownContainer
 - 在 `main.js` 中注册公共组件 `MarkDownContainer`
 ```javascript
 import {MarkDownContainer} from '@/components/Vue/Plugins/index.js'

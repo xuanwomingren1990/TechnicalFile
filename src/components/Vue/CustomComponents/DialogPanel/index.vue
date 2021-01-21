@@ -1,81 +1,84 @@
 <template>
-<div class="parentComponent-dialogPanel">
-    <el-row>
-        <el-button size="small" type="primary" @click="isShowDialog=true">默认剧中的对话框</el-button>
-        <el-button size="small" type="primary" @click="isShowCustom=true">自定义位置的对话框</el-button>
-    </el-row>
+  <div style="height: 100%;overflow: scroll">
 
-    <!--
-    向DialogPanel组件注册一个自定义属性isShowDialog, 控制DialogPanel的显示与隐藏
-    给DialogPanel组件注册一个自定义事件close,点击关闭按钮时将触发该事件，来设置isShowDialog的值为false
-    -->
-    <dialog-panel :isShowDialog="isShowDialog" @close="closeDialog">
-        <h1>默认剧中的对话框</h1>
-    </dialog-panel>
-
-    <!--<custom-location-->
-            <!--:isShowDialog="isShowCustom" @close="closeCustom">-->
-        <!--<h1>自定义位置的对话框</h1>-->
-    <!--</custom-location>-->
-    <custom-location
-            :showClose="true"
-            :useCustomPosition="true"
-            :customClass="'custom-dialog-custom-location'"
-            :top=" '100px' "
-            :left="'200px'"
-            :isShowDialog="isShowCustom" @close="closeCustom">
-        <h1>自定义位置的对话框</h1>
-    </custom-location>
+    <!---------------------------------相对于body元素居中的对话框------------------------------------>
+    <MarkDownContainer>
+      <MarkDown1></MarkDown1>
+    </MarkDownContainer>
+    <div class="dialog-panel-container">
+      <el-row style="display: flex;justify-content: center">
+        <el-button size="small" type="primary" @click="isShowDialog1=true">相对于body居中</el-button>
+      </el-row>
+      <!--对话框组件-->
+      <dialog-panel1 :isShowDialog="isShowDialog1" @close="closeDialog1">
+        <h1>默认相对body元素居中的对话框</h1>
+      </dialog-panel1>
+    </div>
 
 
-<!-------------------笔记------------------>
-<div class="notes hidden">
-<pre>
-DialogPanel组件：
-1.适用于: 通过弹框的方式,展示信息
-2.组件利用了插槽，使用组件时，只需要向组件标签中填充要展示的内容即可，可以是文本，也可以是html
-3.使用方式,参见:Vue\CustomComponents\DialogPanel\index.vue
-<!--&lt;div&gt;&lt;/div&gt;-->
-</pre>
-</div>
-<!-------------------笔记---------------->
-</div>
+    <!---------------------------------相对于body元素自定义位置的对话框------------------------------------>
+    <MarkDownContainer>
+      <MarkDown2></MarkDown2>
+    </MarkDownContainer>
+    <div class="dialog-panel-container">
+      <el-row style="display: flex;justify-content: center">
+        <el-button size="small" type="primary" @click="isShowDialog2=true">自定义位置的对话框</el-button>
+      </el-row>
+      <!--对话框组件-->
+      <DialogPanel2
+          :showClose="true"
+          :useCustomPosition="true"
+          :customClass="'custom-dialog-custom-location'"
+          :top="'20px'"
+          :right="'100px'"
+          :isShowDialog="isShowDialog2" @close="closeCustom">
+        <h1>相对于body自定义位置的对话框</h1>
+      </DialogPanel2>
+    </div>
+  </div>
 </template>
 
 <script>
-    import DialogPanel from './DialogPanel'
-    import CustomLocation from './CustomDialog'
-    export default {
-        name: "index",
-        components: {
-            DialogPanel,
-            CustomLocation
-        },
-        data () {
-            return {
-                isShowDialog: false,
-                isShowCustom:false
-            }
-        },
-        methods: {
-            closeDialog () {
-                this.isShowDialog = false
-            },
-            closeCustom(){
-                this.isShowCustom = false
-            }
-        }
+import DialogPanel1 from './DialogPanel1'
+import DialogPanel2 from './DialogPanel2'
+
+import MarkDown1 from './markDownFiles/README_1.md'
+import MarkDown2 from './markDownFiles/README_2.md'
+
+export default {
+  name: "index",
+  components: {
+    DialogPanel1,
+    DialogPanel2,
+
+    MarkDown1,
+    MarkDown2
+  },
+  data() {
+    return {
+      isShowDialog1: false,
+      isShowDialog2: false
     }
+  },
+  methods: {
+    closeDialog1() {
+      this.isShowDialog1 = false
+    },
+    closeCustom() {
+      this.isShowDialog2 = false
+    }
+  }
+}
 </script>
 
-<style scoped>
-    .parentComponent-dialogPanel{
-        display: flex;
-        justify-content: center;
-        align-items:center;
-        min-height: 80%;
-        background-color: #8d8d8d;
-    }
+<style lang="scss" scoped>
+  .dialog-panel-container {
+    height: 30vh;
+    background-color: #8d8d8d;
+    margin: 10px;
+    padding: 10px;
+
+}
 </style>
 
 

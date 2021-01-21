@@ -1,5 +1,10 @@
 <template>
   <div class="container">
+    <!--  查看文档-->
+    <MarkDownContainer>
+      <MarkDownFile></MarkDownFile>
+    </MarkDownContainer>
+
     <div class="buttons">
       <!--在父组件中切换动态组件-->
       <el-row>
@@ -18,12 +23,6 @@
     <keep-alive>
       <component v-bind:is="currentTabComponent" v-on:checkout="checkout"></component>
     </keep-alive>
-
-    <!--  查看文档-->
-    <MarkDownContainer>
-      <MarkDownFile></MarkDownFile>
-    </MarkDownContainer>
-
   </div>
 </template>
 
@@ -60,9 +59,13 @@ export default {
 
 <style lang="scss" scoped>
 .container {
+  width: 100%;
   .buttons {
     display: flex;
     justify-content: center;
+  }
+  .markdown-body{
+    width: 100% !important;
   }
 }
 </style>

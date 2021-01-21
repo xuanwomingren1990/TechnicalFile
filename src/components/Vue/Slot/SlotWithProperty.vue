@@ -14,7 +14,7 @@
         name: "SlotWithProperty",
         data () {
             return {
-                user : '父组件使用插槽组件中的属性'
+                user : '子组件slot标签上绑定属性,父组件中调用'
             }
         }
     }

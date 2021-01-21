@@ -4,7 +4,15 @@
   </div>
 </template>
 <script>
-import 'github-markdown-css/github-markdown.css'  //导入
+import 'github-markdown-css/github-markdown.css'  //样式
+import hljs from 'highlight.js'
+const highlightCode = () => {
+  const preEl = document.querySelectorAll('pre')
+
+  preEl.forEach((el) => {
+    hljs.highlightBlock(el)
+  })
+}
 export default {
   name: "MarkDownContainer",
 }
@@ -12,10 +20,7 @@ export default {
 
 <style lang="scss">
 .markdown-body{
-  width: 100%;
-  height: 100%;
   padding: 10px;
-  top: 0px;
   background-color: #fff;
 }
 </style>

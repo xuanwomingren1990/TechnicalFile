@@ -3,13 +3,13 @@ import VueRouter from 'vue-router'
 
 // 各个地图组件
 import olMap from '@/components/Openlayers/Map.vue'
-import ControlIndex from '@/components/Openlayers/controls/ControlIndex.vue'
-import MapLinkage from '@/components/Openlayers/map/MapLinkage.vue'
-import MapExchange from '@/components/Openlayers/map/MapExchange.vue'
-import ViewNavigation from '@/components/Openlayers/view/ViewNavigation.vue'
-import ViewExtent from '@/components/Openlayers/view/ViewExtent.vue'
-import ViewMinMaxZoom from '@/components/Openlayers/view/ViewMinMaxZoom.vue'
-import ViewFitExtent from '@/components/Openlayers/view/ViewFitExtent.vue'
+import ControlIndex from '@/components/Openlayers/Controls/ControlIndex.vue'
+import MapLinkage from '@/components/Openlayers/Map/MapLinkage.vue'
+import MapExchange from '@/components/Openlayers/Map/MapExchange.vue'
+import ViewNavigation from '@/components/Openlayers/View/ViewNavigation.vue'
+import ViewExtent from '@/components/Openlayers/View/ViewExtent.vue'
+import ViewMinMaxZoom from '@/components/Openlayers/View/ViewMinMaxZoom.vue'
+import ViewFitExtent from '@/components/Openlayers/View/ViewFitExtent.vue'
 import TileSourceOnline from '@/components/Openlayers/Source_Layer/Source-Tile/TileSourceOnline.vue'
 import TileSourceXYZ from '@/components/Openlayers/Source_Layer/Source-Tile/TileSourceXYZ.vue'
 import TileSourceXYZ_Baidu2_Formal from '@/components/Openlayers/Source_Layer/Source-Tile/TileSourceXYZ_Baidu2_Formal.vue'
@@ -19,19 +19,21 @@ import WMS from '@/components/Openlayers/Source_Layer/WMS-Source/WMS.vue'
 import DiffusedCircle from '@/components/Openlayers/OverLay/DiffusedCircle.vue'
 import WFS from '@/components/Openlayers/GeoserverResource/WFS.vue'
 
-/**********************************vue 案例*****************************************/
+/********************************** vue案例 *****************************************/
 import ArchiveComponent from '@/components/Vue/ArchiveComponent/index.vue'//动态组件
 import SlotIndex from '@/components/Vue/Slot/Index.vue'//插槽
 import CustomComponentIndex from '@/components/Vue/CustomComponents/Index.vue'// vue自定义组件的使用
+import AbsolutePanel from '@/components/Vue/CustomComponents/AbsolutePanel/index.vue'
+import DialogPanel from '@/components/Vue/CustomComponents/DialogPanel/index.vue'
 import CustomPluginsIndex from '@/components/Vue/Plugins/index.vue'//插件的使用
 
-/****************************************CSS、SASS******************************************/
+/**************************************** CSS、SASS ******************************************/
 import CssIndex from '@/components/Vue/CSS/Index.vue'//插件的使用
 
-/****************************************EChart******************************************/
+/**************************************** EChart ******************************************/
 import echartK from '@/components/EChart/chart_K/echart-k.vue'//插件的使用
 
-/*******************************************测试*********************************************/
+/******************************************* 测试 *********************************************/
 import Test from '@/components/ModuleTest/index.vue'//插件的使用
 
 
@@ -134,6 +136,16 @@ const routes = [
         path: '/vue/SlotIndex',
         name: 'SlotIndex',
         component: SlotIndex
+    },
+    {
+        path: '/vue/AbsolutePanel',
+        name: 'AbsolutePanel',
+        component: AbsolutePanel
+    },
+    {
+        path: '/vue/DialogPanel',
+        name: 'DialogPanel',
+        component: DialogPanel
     },
     {
         path: '/vue/Components',

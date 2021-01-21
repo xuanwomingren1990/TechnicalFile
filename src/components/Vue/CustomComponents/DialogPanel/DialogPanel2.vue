@@ -11,7 +11,7 @@
 </template>
 <script>
     export default {
-        name: "CustomDialog",
+        name: "DialogPanel2",
         props: {
             isShowDialog: {
                 type: Boolean,
@@ -19,7 +19,7 @@
             },
             title:{
                 type: String,
-                default: "",
+                default: "自定义位置的弹框",
                 required: false
             },
             showClose:{

@@ -5,7 +5,14 @@
         <el-collapse-item title="Vue" name="1">
           <router-link class="link-item" to="/vue/ArchiveComponent">动态组件</router-link>
           <router-link class="link-item" to="/vue/SlotIndex">插槽</router-link>
-          <router-link class="link-item" to="/vue/Components">自定义组件</router-link>
+
+          <el-collapse class="collapse_level_2">
+            <el-collapse-item title="自定义组件" name="1">
+              <router-link class="link-item" to="/vue/AbsolutePanel">绝对定位组件</router-link>
+              <router-link class="link-item" to="/vue/DialogPanel">对话框</router-link>
+            </el-collapse-item>
+          </el-collapse>
+
           <router-link class="link-item" to="/vue/Plugins">插件</router-link>
           <router-link class="link-item" to="/vue/CSS">SCASS</router-link>
         </el-collapse-item>
@@ -97,15 +104,6 @@ export default {
           notes[i].classList.add('hidden')
         }
       }
-
-      var markdowns = document.getElementsByClassName('markdown-body')
-      for (let i = 0; i < markdowns.length; i++) {
-        if (markdowns[i].className.indexOf('hidden') >= 0) {
-          markdowns[i].classList.remove('hidden')
-        } else {
-          markdowns[i].classList.add('hidden')
-        }
-      }
     }
   },
   components: {},
@@ -123,6 +121,7 @@ export default {
 
 html, body {
   height: 100%;
+  overflow-y: hidden;
 }
 
 #app {
@@ -131,8 +130,7 @@ html, body {
   display: flex;
 
   .router-links {
-    width: 12%;
-    min-width: 200px;
+    width: 16%;
     height: 100%;
     background-color: #c7dbff;
     overflow-y: scroll;
@@ -182,7 +180,7 @@ html, body {
   }
 
   .map-components {
-    width: 88%;
+    width: 83%;
     height: 100%;
   }
 }
@@ -198,15 +196,6 @@ html, body {
 }
 
 .notes.hidden {
-  display: none;
-}
-
-.markdown-body {
-  position: absolute;
-  z-index: 90;
-}
-
-.markdown-body.hidden {
   display: none;
 }
 </style>

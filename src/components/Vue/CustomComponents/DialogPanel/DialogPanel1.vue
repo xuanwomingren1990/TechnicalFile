@@ -16,7 +16,7 @@
 -->
 <template>
     <el-dialog
-            title="dialog弹框"
+            title="相对于body居中"
             :visible.sync="dialogVisible"
             custom-class="custom-dialog"
             :modal="false"
@@ -29,7 +29,7 @@
 
 <script>
     export default {
-        name: "DialogPanel",
+        name: "DialogPanel1",
         props: {
             isShowDialog: {
                 type: Boolean,
@@ -59,6 +59,8 @@
     }
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+  .el-dialog__wrapper{
+    //position: absolute;
+  }
 </style>
