@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import MarkDown1 from './MarkDowns/README_1.md'
+import MarkDown1 from './markDownFiles/README_1.md'
 
 
 import AbsolutePanel from './AbsolutePanel'

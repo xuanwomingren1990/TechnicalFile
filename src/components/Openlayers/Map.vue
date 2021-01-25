@@ -1,9 +1,11 @@
 <template>
-    <div id="map" ref="rootmap">
-      <MarkDownContainer>
-        <MarkDownFile></MarkDownFile>
-      </MarkDownContainer>
-    </div>
+  <div style="height: 100%">
+    <MarkDownContainer>
+      <MarkDownFile></MarkDownFile>
+    </MarkDownContainer>
+
+    <div id="map" ref="rootmap"></div>
+  </div>
 </template>
 
 <script>
