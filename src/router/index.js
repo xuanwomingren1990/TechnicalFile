@@ -2,6 +2,26 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 // 各个地图组件
+/*************************************************** 1. 前端*********************************************/
+/** vue案例  */
+import ArchiveComponent from '@/components/Vue/ArchiveComponent/index.vue'//动态组件
+import SlotIndex from '@/components/Vue/Slot/Index.vue'//插槽
+import CustomComponentIndex from '@/components/Vue/CustomComponents/Index.vue'// vue自定义组件的使用
+import AbsolutePanel from '@/components/Vue/CustomComponents/AbsolutePanel/index.vue'
+import DialogPanel from '@/components/Vue/CustomComponents/DialogPanel/index.vue'
+import CustomPluginsIndex from '@/components/Vue/Plugins/index.vue'//插件的使用
+/** CSS、SASS */
+import CssIndex from '@/components/Vue/CSS/Index.vue'//插件的使用
+/** EChart */
+import echartK from '@/components/EChart/chart_K/echart-k.vue'//插件的使用
+
+
+/*************************************************** 2. 后台*********************************************/
+/** Node */
+import NPM from '@/components/Backend/Node/NPM/index.vue' // npm文档
+
+/*************************************************** 3. GIS*********************************************/
+/** openlayers */
 import olMap from '@/components/Openlayers/Map.vue'
 import ControlIndex from '@/components/Openlayers/Controls/ControlIndex.vue'
 import MapLinkage from '@/components/Openlayers/Map/MapLinkage.vue'
@@ -19,21 +39,8 @@ import WMS from '@/components/Openlayers/Source_Layer/WMS-Source/WMS.vue'
 import DiffusedCircle from '@/components/Openlayers/OverLay/DiffusedCircle.vue'
 import WFS from '@/components/Openlayers/GeoserverResource/WFS.vue'
 
-/********************************** vue案例 *****************************************/
-import ArchiveComponent from '@/components/Vue/ArchiveComponent/index.vue'//动态组件
-import SlotIndex from '@/components/Vue/Slot/Index.vue'//插槽
-import CustomComponentIndex from '@/components/Vue/CustomComponents/Index.vue'// vue自定义组件的使用
-import AbsolutePanel from '@/components/Vue/CustomComponents/AbsolutePanel/index.vue'
-import DialogPanel from '@/components/Vue/CustomComponents/DialogPanel/index.vue'
-import CustomPluginsIndex from '@/components/Vue/Plugins/index.vue'//插件的使用
 
-/**************************************** CSS、SASS ******************************************/
-import CssIndex from '@/components/Vue/CSS/Index.vue'//插件的使用
-
-/**************************************** EChart ******************************************/
-import echartK from '@/components/EChart/chart_K/echart-k.vue'//插件的使用
-
-/******************************************* 测试 *********************************************/
+/******************************************* 4. 测试*********************************************/
 import Test from '@/components/ModuleTest/index.vue'//插件的使用
 
 
@@ -173,6 +180,12 @@ const routes = [
         path: '/EChart/K',
         name: 'echartK',
         component: echartK
+    },
+    /***************NODE******************/
+    {
+        path: '/NPM',
+        name: 'NPM',
+        component: NPM
     }
 
 ]
