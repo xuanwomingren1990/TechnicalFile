@@ -1,4 +1,4 @@
-# openlayers-demos-my
+# documentation-repository
 
 ## Project setup
 ```
@@ -30,5 +30,5 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ### 项目描述
 ```
-基于vue的openlayers学习案例
+利用vue-cli3搭建的项目，包含了前端、后台、GIS的一些技术文档
 ```
