@@ -19,6 +19,7 @@ import echartK from '@/components/EChart/chart_K/echart-k.vue'//插件的使用
 /*************************************************** 2. 后台*********************************************/
 /** Node */
 import NPM from '@/components/Backend/Node/NPM/index.vue' // npm文档
+import JsonServer from '@/components/Backend/JsonServer/index.vue'
 
 /*************************************************** 3. GIS*********************************************/
 /** openlayers */
@@ -186,6 +187,12 @@ const routes = [
         path: '/NPM',
         name: 'NPM',
         component: NPM
+    },
+    /***************JsonServer******************/
+    {
+        path: '/JsonServer',
+        name: 'JsonServer',
+        component: JsonServer
     }
 
 ]

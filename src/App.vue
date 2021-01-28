@@ -30,6 +30,7 @@
             <el-collapse-item title="Node">
               <router-link class="link-item" to="/NPM">NPM</router-link>
             </el-collapse-item>
+            <router-link class="link-item" to="/JsonServer">JsonServer</router-link>
           </el-collapse>
         </el-collapse-item>
         <!--------------------------------------GIS------------------------------------------>

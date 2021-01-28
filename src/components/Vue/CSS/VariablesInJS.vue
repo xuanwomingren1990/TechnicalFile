@@ -26,7 +26,7 @@
 div{
     .variable-scss{
         /*2.scss中使用全局js样式变量*/
-        color: $blue;
+        color: gray;
     }
 }
 

@@ -9,20 +9,16 @@ $water-color-2: #1ba2f7;
 
 $power-color: #f1c277;
 $power-color-1: #f1c277;
-$power-color-2: #f1c277;
+$power-color-2: #C677F1;
 
 
 
-@each $ele in water,power{
-  @if($ele == water){
-    $level1:50%;
-  }
-  $water-color-1: lighten($water-color,$level1);
-  $water-color-2: lighten($water-color,$level2);
-}
+//@each $ele in water,power{
+//  @if($ele == water){
+//    $level1:50%;
+//  }
+//  $water-color-1: lighten($water-color,$level1);
+//  $water-color-2: lighten($water-color,$level2);
+//}
 
 
-:export{
-  waterColor1:$water-color-1;
-  waterColor2:$water-color-2;
-}
