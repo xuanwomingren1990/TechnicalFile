@@ -14,6 +14,7 @@ import CustomPluginsIndex from '@/components/Vue/Plugins/index.vue'//插件的�
 import CssIndex from '@/components/Vue/CSS/Index.vue'//插件的使用
 /** EChart */
 import echartK from '@/components/EChart/chart_K/echart-k.vue'//插件的使用
+import echartDoc from '@/components/EChart/Index.vue'
 
 
 /*************************************************** 2. 后台*********************************************/
@@ -182,6 +183,12 @@ const routes = [
         name: 'echartK',
         component: echartK
     },
+    {
+        path: '/EChart/Doc',
+        name: 'Doc',
+        component: echartDoc
+    },
+    //
     /***************NODE******************/
     {
         path: '/NPM',

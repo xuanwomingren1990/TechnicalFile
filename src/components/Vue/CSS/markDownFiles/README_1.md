@@ -1,4 +1,4 @@
-### 1. JS中的样式变量
+## 1. JS中的样式变量
 - js文件中定义样式变量
 ```javascript
  // styleVariables.js文件
@@ -64,7 +64,7 @@ Vue.use(styleVariables)
 ```
 
 
-### 2. scss文件中的样式变量
+## 2. scss文件中的样式变量
 - scss文件中定义样式变量
 ```scss
 //resource-variables.scss中
@@ -91,7 +91,7 @@ $power-color-2: #C677F1;
   waterColor2:$water-color-2;
 }
 ```
-2.1 在scss中使用
+#### 2.1 在scss中使用
 - 配置为全局scss变量
 ```javascript
 module.exports = {
@@ -112,7 +112,7 @@ p:nth-child(2){
 }
 ```
 
-2.2 在js中引入变量
+#### 2.2 在js中引入变量
 ```javascript
 // vue组件中
  import colors from '@/styles/index.scss'

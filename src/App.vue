@@ -21,6 +21,7 @@
             </el-collapse-item>
             <el-collapse-item title="Echarts">
               <router-link class="link-item" to="/EChart/K">K线图</router-link>
+              <router-link class="link-item" to="/EChart/Doc">文档</router-link>
             </el-collapse-item>
           </el-collapse>
         </el-collapse-item>
