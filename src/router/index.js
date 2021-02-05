@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 // 各个地图组件
-/*************************************************** 1. 前端*********************************************/
+/************************************************ 1.前端*********************************************/
 /** vue案例  */
 import ArchiveComponent from '@/components/Vue/ArchiveComponent/index.vue'//动态组件
 import SlotIndex from '@/components/Vue/Slot/Index.vue'//插槽
@@ -17,12 +17,12 @@ import echartK from '@/components/EChart/chart_K/echart-k.vue'//插件的使用
 import echartDoc from '@/components/EChart/Index.vue'
 
 
-/*************************************************** 2. 后台*********************************************/
+/************************************************ 2.后台*********************************************/
 /** Node */
 import NPM from '@/components/Backend/Node/NPM/index.vue' // npm文档
 import JsonServer from '@/components/Backend/JsonServer/index.vue'
 
-/*************************************************** 3. GIS*********************************************/
+/************************************************ 3. GIS*********************************************/
 /** openlayers */
 import olMap from '@/components/Openlayers/Map.vue'
 import ControlIndex from '@/components/Openlayers/Controls/ControlIndex.vue'
@@ -42,15 +42,18 @@ import DiffusedCircle from '@/components/Openlayers/OverLay/DiffusedCircle.vue'
 import WFS from '@/components/Openlayers/GeoserverResource/WFS.vue'
 
 
-/******************************************* 4. 测试*********************************************/
+/************************************************ 4.测试*********************************************/
 import Test from '@/components/ModuleTest/index.vue'//插件的使用
+
+/************************************************ 5.其他*********************************************/
+import DigitalCash from '@/components/Other/DigitalCash/Index.vue'//數字貨幣
 
 
 
 Vue.use(VueRouter)
 
 const routes = [
-    /********地图相关路由*******/
+    /********openleyers路由*******/
     {
         path: '/',
         redirect: '/olMap'
@@ -200,6 +203,12 @@ const routes = [
         path: '/JsonServer',
         name: 'JsonServer',
         component: JsonServer
+    },
+    /*********************数字货币*********************/
+    {
+        path: '/Other/DigitalCash',
+        name: 'DigitalCash',
+        component: DigitalCash
     }
 
 ]

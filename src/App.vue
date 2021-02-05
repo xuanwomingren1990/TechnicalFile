@@ -87,6 +87,12 @@
             </el-collapse-item>
           </el-collapse>
         </el-collapse-item>
+        <!--------------------------------------其他------------------------------------------>
+        <el-collapse-item title="日常">
+          <el-collapse class="collapse_level_second">
+            <router-link class="link-item" to="/Other/DigitalCash">数字货币</router-link>
+          </el-collapse>
+        </el-collapse-item>
         <!--------------------------------------测试-------------------------------------------->
         <el-collapse-item title="测试">
           <router-link class="link-item" to="/ModuleTest/Test">模块测试</router-link>

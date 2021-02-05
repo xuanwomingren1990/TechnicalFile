@@ -118,13 +118,36 @@ tooltip:{
 }
 ```
 
+### tooltip 和 axisPointer
+`toolTip`是提示框，`axisPoint`是坐标轴指示器
+坐标轴的标签无法动态更改样式，可以利用axisPoint来达到改变坐标轴标签的样式：例如，axisPoint文体覆盖坐标轴文本。axisPointer可以在多个个地方配置。
+```javascript
+option:{
+    tooltip:{
+        axisPointer:{}
+    },
+    xAxis:{
+        axisPointer:{}
+    },
+    yAxis:{
+        axisPointer:{}
+    },
+    // 适用于饼图、雷达图
+    radiusAxis:{
+        axisPointer:{}
+    }
+}
+```
+
+![img_3.png](./img_3.png)
 ### 雷达图tooltip显示单个数据项
 
 [echarts雷达图显示单个数据的tooltip](https://blog.csdn.net/weixin_44634366/article/details/108872578)
 
 **需求:** tooltip中只展示当前维度的数值
 
-正常情况下，雷达图的tooltip会同时显示所有维度的数据。同时，即使在 `formatter`的回调函数，也无法拿到当前鼠标悬浮的维度的数值。
+正常情况下，雷达图的tooltip会同时显示所有维度的数据。
+同时，即使在 `formatter`的回调函数，并不会单独提供单前选中维度的数值，因此无法确切得知当前维度的数值。
 
 **解决办法:**
 有 `n` 个维度则设置 `n+1` 个系列。
@@ -134,9 +157,11 @@ tooltip:{
 option:{
     tooltip:{
         formatter:function(params){
+            // value是一个数组,包含 维度1、维度2、维度3 的所有维度数据；
+            // 在一个系列中，只设置一个系列有值，其他系列为null,则当触发toolTip时，不为null的值就是当前选中维度的值。
             let value = null
             params.value.forEach(item=>{
-                if (item){
+                if (item !== null){
                     value = item
                 }
             })
@@ -156,8 +181,8 @@ option:{
 
     series:[
         // 第一个系列所有的维度上都有值;
-        // 因为数据完成，可以形成完整的雷达图形;
-        // 不需要显示该系列的tooltip;
+        // 要展示完整的雷达图形，需要完整的数据;
+        // 不显示该系列的tooltip，因为该tooltip无法确定当前选中的维度值;
         {
             type:'radar',
             tooltip:{
@@ -168,14 +193,19 @@ option:{
             }
         },
         
-        // - 其他n个系列，只在一个维度上有值；
-        // - 因为数据不完整，雷达图形变形，设置图形透明，不显示图形；
-        // - 需要显示该系列的tooltip
-        // - 原理:n+1个系列，只有2个系列是在该维度上有值，会触发tooltip;其他没值的系列不会出触发tooltip；
-        //   系列1所有维度都有值，设置不显示tooltip；
-        //   剩余一个有值的系列，只在该系列有值，在funtion中可以通过是否为null来判断，不是null的即为该维度的值。
         
-        
+        // 1. 其他n个系列，成阶梯状设置一个维度上有值；
+        //   [
+        //       [维度1, null, null], // 系列a
+        //       [null, 维度2, null], // 系列b
+        //       [null, null, 维度3]  // 系列c
+        //   ]
+        //   如上维度1为例: 
+        //              当选中维度1时，只有系列a在该维度有值，才会会触发tooltip,其他系列在该维度为null,不会触发tooltip;
+        //              系列a触发tooltip时,回调函数中value值[维度1, null, null],通过判断是否为null来确定维度1的值。
+        // 2. 因为数据不完整，雷达图形变形，设置图形透明，不显示图形；
+        // 3. 需要显示tooltip；
+        // 4. 注意通过z将系列放在上面，否则被第一个被第一系列的雷达图形覆盖，无法触发tooltip
         
         {
             type:'radar',
@@ -185,6 +215,7 @@ option:{
             itemStyle:{
                 color:"transparent"
             },
+            z:99,
             data:{
                 value:[100,null,null]
             }
@@ -197,6 +228,7 @@ option:{
             itemStyle:{
                 color:"transparent"
             },
+            z:99,
             data:{
                 value:[null,90,null]
             }
@@ -209,6 +241,7 @@ option:{
             itemStyle:{
                 color:"transparent"
             },
+            z:99,
             data:{
                 value:[null,null,80]
             }
@@ -216,3 +249,6 @@ option:{
     ]
 }
 ```
+
+### 事件与行为
+[ECharts中的事件和行为](https://blog.csdn.net/wilson_m/article/details/81332659?utm_medium=distribute.pc_relevant.none-task-blog-baidujs_title-6&spm=1001.2101.3001.4242)
