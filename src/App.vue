@@ -101,14 +101,14 @@
     </div>
 
     <div class="map-components">
-      <el-button
-          type="primary" size="mini" v-on:click="showNotes" style="
-              z-index: 99;
-              position: absolute;
-              left: 185px;
-              bottom: 5px;">
-        查看注记
-      </el-button>
+<!--      <el-button-->
+<!--          type="primary" size="mini" v-on:click="showNotes" style="-->
+<!--              z-index: 99;-->
+<!--              position: absolute;-->
+<!--              left: 185px;-->
+<!--              bottom: 5px;">-->
+<!--        查看注记-->
+<!--      </el-button>-->
       <router-view></router-view>
     </div>
   </div>
